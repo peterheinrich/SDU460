@@ -8,8 +8,8 @@
         </clipPath>
 
         <!-- Altimeter Tape Lines -->
-        <line id="altimeter_tape_long" x1="0" y1=0 x2="13" y2="0" stroke="#CCCCCC" stroke-width="2"></line>
-        <line id="altimeter_tape_short" x1="0" y1=0 x2="8" y2="0" stroke="#CCCCCC" stroke-width="2"></line>
+        <line id="altimeter_tape_long" x1="0" y1="0" x2="13" y2="0" stroke="#CCCCCC" stroke-width="2"></line>
+        <line id="altimeter_tape_short" x1="0" y1="0" x2="8" y2="0" stroke="#CCCCCC" stroke-width="2"></line>
 
         <!-- Altimeter Dials -->
         <g id="altimeter_dial_double">

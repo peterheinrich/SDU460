@@ -38,7 +38,7 @@
         <text x="5" y="11" fill="white" font-weight="bold" font-size="16" alignment-baseline="central"
             text-anchor="start">OAT</text>
         <text id="oat" x="95" y="11" fill="white" font-weight="bold" font-size="16" alignment-baseline="central"
-            text-anchor="end">23 &deg;C</text>
+            text-anchor="end">23 °C</text>
     </g>
     <g transform="translate(585,0)">
         <rect x="0" y="0" width="136" height="22" stroke="#666666" fill="black" stroke-width="2" ry="2" rx="2"></rect>

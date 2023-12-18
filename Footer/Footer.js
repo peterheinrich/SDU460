@@ -4,7 +4,7 @@ class Footer extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./Footer/Footer.html").then(t => t.text()).then(r => {
+        fetch("./Footer/Footer.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

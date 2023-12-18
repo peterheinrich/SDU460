@@ -2,11 +2,11 @@
     font-family="Arial, Helvetica, sans-serif">
     <g transform="translate(20,10)">
 
-        <text x="0" y="-3" fill="white" font-weight="bold" font-size="14" alignment-baseline="central">CHT &deg;F</text>
+        <text x="0" y="-3" fill="white" font-weight="bold" font-size="14" alignment-baseline="central">CHT °F</text>
         <text id="chtvalue" x="130" y="-3" fill="white" font-weight="bold" font-size="14" text-anchor="end"
             alignment-baseline="central">300</text>
         <text x="0" y="108" fill="white" font-weight="bold" font-size="14" alignment-baseline="central">EGT
-            &deg;F</text>
+            ° F</text>
         <text id="egtvalue" x="130" y="108" fill="white" font-weight="bold" font-size="14" text-anchor="end"
             alignment-baseline="central">300</text>
 

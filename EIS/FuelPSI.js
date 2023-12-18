@@ -4,7 +4,7 @@ class FUELPSI extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./EIS/FuelPSI.html").then(t => t.text()).then(r => {
+        fetch("./EIS/FuelPSI.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

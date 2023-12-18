@@ -5,7 +5,7 @@ class EGTCHT extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./EIS/EGTCHT.html").then(t => t.text()).then(r => {
+        fetch("./EIS/EGTCHT.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

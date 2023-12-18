@@ -4,7 +4,7 @@ class OILTEMP extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./EIS/OilTemp.html").then(t => t.text()).then(r => {
+        fetch("./EIS/OilTemp.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

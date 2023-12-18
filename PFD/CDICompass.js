@@ -6,7 +6,7 @@ class CDICOMPASS extends HTMLElement {
 
         this.heading = 0;
 
-        fetch("./PFD/CDICompass.html").then(t => t.text()).then(r => {
+        fetch("./PFD/CDICompass.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

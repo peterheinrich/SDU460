@@ -4,7 +4,7 @@ class AMPS extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./EIS/Amps.html").then(t => t.text()).then(r => {
+        fetch("./EIS/Amps.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

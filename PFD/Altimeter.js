@@ -6,7 +6,7 @@ class ALTIMETER extends HTMLElement {
 
         this.altitude = 0;
 
-        fetch("./PFD/Altimeter.html").then(t => t.text()).then(r => {
+        fetch("./PFD/Altimeter.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

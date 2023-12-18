@@ -154,7 +154,7 @@
             <text x="-45" y="-164" font-size="12" fill="#F000F0" font-weight="bold"
                 alignment-baseline="middle">TRK</text>
             <text id="trk-text" x="5" y="-164" font-size="20" fill="#F000F0" font-weight="bold" text-anchor="middle"
-                alignment-baseline="middle">200&deg;</text>
+                alignment-baseline="middle">200°</text>
         </g>
 
         <!-- Heading -->
@@ -162,7 +162,7 @@
             <rect x="-52" y="-180" width="86" height="29" rx="8" stroke="#808080" fill="black" opacity="0.7"></rect>
             <text x="-45" y="-164" font-size="12" fill="white" font-weight="bold" alignment-baseline="middle">HDG</text>
             <text id="hdg-text" x="5" y="-164" font-size="20" fill="#00F0F0" font-weight="bold" text-anchor="middle"
-                alignment-baseline="middle">200&deg;</text>
+                alignment-baseline="middle">200°</text>
         </g>
 
         <!-- Course -->
@@ -170,7 +170,7 @@
             <rect x="-52" y="-180" width="86" height="29" rx="8" fill="black" opacity="0.7"></rect>
             <text x="-45" y="-164" font-size="12" fill="white" font-weight="bold" alignment-baseline="middle">CRS</text>
             <text id="crs-text" x="5" y="-164" font-size="20" fill="#F000F0" font-weight="bold" text-anchor="middle"
-                alignment-baseline="middle">200&deg;</text>
+                alignment-baseline="middle">200°</text>
         </g>
     </g>
 </svg>

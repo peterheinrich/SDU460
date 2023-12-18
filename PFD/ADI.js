@@ -8,7 +8,7 @@ class ADI extends HTMLElement {
         this.roll = 0;
         this.pitch = 0;
 
-        fetch("./PFD/ADI.html").then(t => t.text()).then(r => {
+        fetch("./PFD/ADI.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

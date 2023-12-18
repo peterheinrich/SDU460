@@ -7,7 +7,7 @@ class ASI extends HTMLElement {
         this.ias = 0;
         this.gs = 0;
 
-        fetch("./PFD/ASI.html").then(t => t.text()).then(r => {
+        fetch("./PFD/ASI.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

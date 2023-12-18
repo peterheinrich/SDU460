@@ -4,7 +4,7 @@ class OILPSI extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./EIS/OilPSI.html").then(t => t.text()).then(r => {
+        fetch("./EIS/OilPSI.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

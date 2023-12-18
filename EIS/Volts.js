@@ -4,7 +4,7 @@ class VOLTS extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./EIS/Volts.html").then(t => t.text()).then(r => {
+        fetch("./EIS/Volts.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 

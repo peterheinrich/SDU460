@@ -4,7 +4,7 @@ class EISRPM extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./EIS/RPM.html").then(t => t.text()).then(r => {
+        fetch("./EIS/RPM.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 
