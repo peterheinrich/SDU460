@@ -1,0 +1,16 @@
+{
+    "instruments" : [
+        {
+            "name" : "Engine 1 RPMGauge",
+            "type" : "g3x-eis-rpm-gauge",
+            "reads" : [
+                {
+                    "ident" : "ENG1_RPM",
+                    "type": "integer",
+                    "scale_min" : 0,
+                    "scale_max" : 2800
+                }
+            ]
+        }
+    ]
+}

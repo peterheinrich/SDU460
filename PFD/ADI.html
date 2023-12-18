@@ -1,0 +1,137 @@
+<svg viewBox="0 0 550 710" xmlns="http://www.w3.org/2000/svg" width="550" height="710"
+    font-family="Arial, Helvetica, sans-serif">
+    <defs>
+        <linearGradient id="grad_sky" gradientTransform="rotate(90)">
+            <stop offset="5%" stop-color="#3040CC" />
+            <stop offset="95%" stop-color="#5060A0" />
+        </linearGradient>
+        <linearGradient id="grad_gnd" gradientTransform="rotate(90)">
+            <stop offset="5%" stop-color="#805011" />
+            <stop offset="95%" stop-color="#604012" />
+        </linearGradient>
+
+        <clipPath id="horizon_clip" maskContentUnits="objectBoundingBox">
+            <rect x="162" y="62" width="559" height="714"></rect>
+        </clipPath>
+
+        <!-- Bank lines -->
+        <line id="bank_line_long" x1="0" y1="-124" x2="0" y2="-141" stroke="white" stroke-width="2"></line>
+        <line id="bank_line_short" x1="0" y1="-124" x2="0" y2="-133" stroke="white" stroke-width="2"></line>
+
+        <!-- Attitude lines -->
+        <line id="attitude_line_short" x1="-13" y1="0" x2="13" y2="0" stroke-width="2" stroke="white"></line>
+        <line id="attitude_line_long" x1="-20" y1="0" x2="20" y2="0" stroke-width="2" stroke="white"></line>
+
+        <!-- Pitch Fade Gradient -->
+        <linearGradient id="pitchFadeGradient" x1="-1" y1="-1" x2="1" y2="1" gradientTransform="rotate(90)">
+            <stop offset="40%" stop-color="white" stop-opacity="0" />
+            <stop offset="50%" stop-color="white" stop-opacity="1" />
+            <stop offset="50%" stop-color="white" stop-opacity="1" />
+            <stop offset="60%" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+
+        <mask id="pitchFadeMask" maskContentUnits="objectBoundingBox">
+            <rect x="-1" y="0" width="10" height="2" fill="url(#pitchFadeGradient)" />
+        </mask>
+
+        <clipPath id="pitch_clip">
+            <rect x="-100" y="-100" width="200" height="200"></rect>
+        </clipPath>
+    </defs>
+    <g id="viewport" transform="translate(280,200)">
+        <g id="horizon" transform="rotate(25,0,0)">
+            <rect x="-2000" y="-4000" width="4000" height="4000" fill="url('#grad_sky')"></rect>
+            <rect x="-2000" y="0" width="4000" height="4000" fill="url('#grad_gnd')" />
+            <line x1="-2000" y1="0" x2="2000" y2="0" stroke="white"></line>
+            <line x1="0" x2="0" y1="-30" y2="+30" stroke="white" />
+        </g>
+
+        <g id="bank_indicator" transform="rotate(25,0,0)">
+            <path d="M-108,-63 A125,125,120,0,1,108,-63" stroke="white" stroke-width="2" fill="transparent"></path>
+            <use href="#bank_line_long" transform="rotate(-60,0,0)"></use>
+            <use href="#bank_line_long" transform="rotate(-30,0,0)"></use>
+            <use href="#bank_line_long" transform="rotate(0,0,0)"></use>
+            <use href="#bank_line_long" transform="rotate(30,0,0)"></use>
+            <use href="#bank_line_long" transform="rotate(60,0,0)"></use>
+            <use href="#bank_line_short" transform="rotate(-45,0,0)"></use>
+            <use href="#bank_line_short" transform="rotate(-20,0,0)"></use>
+            <use href="#bank_line_short" transform="rotate(-10,0,0)"></use>
+            <use href="#bank_line_short" transform="rotate(10,0,0)"></use>
+            <use href="#bank_line_short" transform="rotate(20,0,0)"></use>
+            <use href="#bank_line_short" transform="rotate(45,0,0)"></use>
+            <path d="M0,-125 l-8,-16 l16,0 l-8,16" fill="white"></path>
+            <g clip-path="url(#pitch_clip)">
+                <g id="pitch">
+                    <g> <!-- mask="url(#pitchFadeMask)" -->
+                        <use href="#attitude_line_long" transform="translate(0,-288)"></use>
+                        <use href="#attitude_line_short" transform="translate(0,-252)"></use>
+                        <use href="#attitude_line_long" transform="translate(0,-216)"></use>
+                        <use href="#attitude_line_short" transform="translate(0,-180)"></use>
+                        <use href="#attitude_line_long" transform="translate(0,-144)"></use>
+                        <use href="#attitude_line_short" transform="translate(0,-108)"></use>
+                        <use href="#attitude_line_long" transform="translate(0,-72)"></use>
+                        <use href="#attitude_line_short" transform="translate(0,-36)"></use>
+                        <use href="#attitude_line_long" transform="translate(0,0)"></use>
+                        <use href="#attitude_line_short" transform="translate(0,36)"></use>
+                        <use href="#attitude_line_long" transform="translate(0,72)"></use>
+                        <use href="#attitude_line_short" transform="translate(0,108)"></use>
+                        <use href="#attitude_line_long" transform="translate(0,144)"></use>
+                        <use href="#attitude_line_short" transform="translate(0,180)"></use>
+                        <use href="#attitude_line_long" transform="translate(0,216)"></use>
+                        <use href="#attitude_line_short" transform="translate(0,252)"></use>
+                        <use href="#attitude_line_long" transform="translate(0,288)"></use>
+
+                        <text x="-25" y="-72" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="end">5</text>
+                        <text x="25" y="-72" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="start">5</text>
+                        <text x="-25" y="72" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="end">5</text>
+                        <text x="25" y="72" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="start">5</text>
+
+                        <text x="-25" y="-144" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="end">10</text>
+                        <text x="25" y="-144" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="start">10</text>
+                        <text x="-25" y="144" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="end">10</text>
+                        <text x="25" y="144" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="start">10</text>
+
+                        <text x="-25" y="-216" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="end">15</text>
+                        <text x="25" y="-216" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="start">15</text>
+                        <text x="-25" y="216" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="end">15</text>
+                        <text x="25" y="216" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="start">15</text>
+
+                        <text x="-25" y="-288" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="end">20</text>
+                        <text x="25" y="-288" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="start">20</text>
+                        <text x="-25" y="288" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="end">20</text>
+                        <text x="25" y="288" fill="white" stroke="black" font-size="20" font-weight="bold"
+                            alignment-baseline="central" text-anchor="start">20</text>
+                    </g>
+                </g>
+            </g>
+            <path d="M0,-125 l-8,16 l16,0 l-8,-16" fill="white"></path>
+            <!-- Arrow Symbols -->
+            <circle r="12" cx="0" cy="0" stroke="#00DD00" stroke-width="2" fill="transparent" ></circle>
+            <line x1="-12" y1="0" x2="-22" y2="0" stroke-width="2" stroke="#00DD00"></line>
+            <line x1="12" y1="0" x2="22" y2="0" stroke-width="2" stroke="#00DD00"></line>
+            <line x1="0" y1="-12" x2="0" y2="-22" stroke-width="2" stroke="#00DD00"></line>
+            <line x1="0" y1="12" x2="0" y2="22" stroke-width="2" stroke="#00DD00"></line>
+
+            <g>
+                <path d="M-85,25 L0,0 L-65,25 L-85,25" stroke="black" fill="#c0c020"></path>
+                <path d="M-65,25 L0,0 L-40,25 L-65,25" stroke="black" fill="#656520"></path>
+                <path d="M85,25 L0,0 L65,25 L85,25" stroke="black" fill="#c0c020"></path>
+                <path d="M65,25 L0,0 L40,25 L65,25" stroke="black" fill="#656520"></path>
+            </g>
+        </g>
+</svg>

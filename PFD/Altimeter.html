@@ -1,0 +1,177 @@
+<svg viewBox="0 0 100 350" xmlns="http://www.w3.org/2000/svg" width="100" height="350"
+    font-family="Arial, Helvetica, sans-serif">
+    
+    <defs>
+        
+        <clipPath id="altimeter_tape_clip" maskContentUnits="objectBoundingBox">
+            <rect x="0" y="30" width="98" height="275"></rect>
+        </clipPath>
+
+        <!-- Altimeter Tape Lines -->
+        <line id="altimeter_tape_long" x1="0" y1=0 x2="13" y2="0" stroke="#CCCCCC" stroke-width="2"></line>
+        <line id="altimeter_tape_short" x1="0" y1=0 x2="8" y2="0" stroke="#CCCCCC" stroke-width="2"></line>
+
+        <!-- Altimeter Dials -->
+        <g id="altimeter_dial_double">
+            <text x="13" y="-125" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">00</text>
+            <text x="13" y="-100" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">80</text>
+            <text x="13" y="-75" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">60</text>
+            <text x="13" y="-50" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">40</text>
+            <text x="13" y="-25" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">20</text>         
+            <text x="13" y="0" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">00</text>
+            <text x="13" y="25" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">80</text>
+        </g>
+        <g id="altimeter_dial_small">
+            <text x="7" y="-250" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">0</text>
+            <text x="7" y="-225" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">9</text>
+            <text x="7" y="-200" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">8</text>
+            <text x="7" y="-175" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">7</text>
+            <text x="7" y="-150" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">6</text>
+            <text x="7" y="-125" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">5</text>
+            <text x="7" y="-100" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">4</text>
+            <text x="7" y="-75" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">3</text>
+            <text x="7" y="-50" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">2</text>
+            <text x="7" y="-25" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">1</text>         
+            <text x="7" y="0" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">0</text>
+            <text x="7" y="25" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">9</text>
+        </g>
+
+        <g id="altimeter_dial_large">
+            <rect x="0" y="-367" width="20" height="446" fill="black"></rect>
+            <text x="10" y="-320" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">0</text>
+            <text x="10" y="-288" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">9</text>
+            <text x="10" y="-256" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">8</text>
+            <text x="10" y="-224" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">7</text>
+            <text x="10" y="-192" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">6</text>
+            <text x="10" y="-160" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">5</text>
+            <text x="10" y="-128" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">4</text>
+            <text x="10" y="-96" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">3</text>
+            <text x="10" y="-64" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">2</text>
+            <text x="10" y="-32" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">1</text>         
+            <text x="10" y="0" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">0</text>
+            <text x="10" y="32" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">9</text>
+        </g>
+
+        <clipPath id="altimeter_dial_clip">
+            <path d="M0,0 L7,-7 L7,-13 A4,4,90,0,1,11,-16 L58,-16 L58,-25 A4,4,90,0,1,62,-29 L84,-29 A4,4,90,0,1,88,-25 L88,26 A4,4,90,0,1,84,29 L62,30 A4,4,90,0,1,58,25 L58,16 L11,16 A4,4,90,0,1,7,13 L7,7 L0,0"></path>
+        </clipPath>
+
+        <linearGradient id="grad_alt_up" gradientTransform="rotate(90)">
+            <stop offset="0.1" stop-color="white" stop-opacity="1" />
+            <stop offset="1.0" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+        <mask id="grad_alt_up_fade" maskContentUnits="objectBoundingBox">
+            <rect width="1" height="1" fill="url(#grad_alt_up)" />
+        </mask>
+
+        <linearGradient id="grad_alt_down" gradientTransform="rotate(90)">
+            <stop offset="0.1" stop-color="white" stop-opacity="0" />
+            <stop offset="1.0" stop-color="white" stop-opacity="1" />
+        </linearGradient>
+        <mask id="grad_alt_down_fade" maskContentUnits="objectBoundingBox">
+            <rect width="1" height="1" fill="url(#grad_alt_down)" />
+        </mask>
+
+    </defs>
+
+
+    <g transform="translate(0,0)">
+        <path d="M0,30 L0,6 A6,6,90,0,1,6,0 L92,0 A6,6,90,0,1,98,6 L98,329 A6,6,90,0,1,92,335 L6,335 A6,6,90,0,1,0,329 L0,6" fill="black" fill-opacity="0.4" ></path>
+        <path d="M0,30 L0,6 A6,6,-90,0,1,6,0 L92,0 A6,6,90,0,1,98,6 L98,30 L0,30" fill="black" fill-opacity="0.4" stroke="gray"></path>
+        <path d="M98,305 L98,329 A6,6,90,0,1,92,335 L6,335 A6,6,90,0,1,0,329 L0,305 L98,305" fill="black" fill-opacity="0.4" stroke="gray"></path>
+        <text x="75" y="14" font-size="20" font-weight="bold" fill="#00F0F0" alignment-baseline="central" text-anchor="end">5000</text>
+        <text x="92" y="17" font-size="12" font-weight="bold" fill="#00F0F0" alignment-baseline="central" text-anchor="end">FT</text>
+        <text x="72" y="320" font-size="20" font-weight="bold" fill="#00F0F0" alignment-baseline="central" text-anchor="end">1013</text>
+        <text x="92" y="323" font-size="12" font-weight="bold" fill="#00F0F0" alignment-baseline="central" text-anchor="end">MB</text>
+        <!-- Altimeter Tape -->
+        <g clip-path="url(#altimeter_tape_clip)">
+            <g id="altimeter_tape" transform="translate(0,0)">
+               
+                <use href="#altimeter_tape_long" transform="translate(0,410)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,398)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,386)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,374)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,362)"></use>
+                <use href="#altimeter_tape_long" transform="translate(0,350)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,338)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,326)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,314)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,302)"></use>
+
+                <use href="#altimeter_tape_long" transform="translate(0,290)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,278)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,266)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,254)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,242)"></use>
+                <use href="#altimeter_tape_long" transform="translate(0,230)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,218)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,206)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,194)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,182)"></use>
+                
+                
+                <use href="#altimeter_tape_long" transform="translate(0,170)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,158)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,146)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,134)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,122)"></use>
+                <use href="#altimeter_tape_long" transform="translate(0,110)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,98)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,86)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,74)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,62)"></use>
+                <use href="#altimeter_tape_long" transform="translate(0,50)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,38)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,26)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,14)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,2)"></use>
+                <use href="#altimeter_tape_long" transform="translate(0,-10)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,-22)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,-34)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,-46)"></use>
+                <use href="#altimeter_tape_short" transform="translate(0,-58)"></use>
+                <use href="#altimeter_tape_long" transform="translate(0,-70)"></use>
+
+
+                <text id="alt_upper_3t" x="34" y="-10" font-size="24" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="end">5</text>
+                <text id="alt_upper_3" x="34" y="-10" font-size="20" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="start">300</text>
+                <text id="alt_upper_2t" x="34" y="50" font-size="24" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="end">5</text>
+                <text id="alt_upper_2" x="34" y="50" font-size="20" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="start">200</text>
+                <text id="alt_upper_1t" x="34" y="110" font-size="24" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="end">5</text>
+                <text id="alt_upper_1" x="34" y="110" font-size="20" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="start">100</text>
+                <text id="alt_centert" x="34" y="170" font-size="24" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="end">5</text>
+                <text id="alt_center" x="34" y="170" font-size="20" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="start">000</text>
+                <text id="alt_lower_1t" x="34" y="230" font-size="24" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="end">4</text>
+                <text id="alt_lower_1" x="34" y="230" font-size="20" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="start">900</text>
+                <text id="alt_lower_2t" x="34" y="290" font-size="24" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="end">4</text>
+                <text id="alt_lower_2" x="34" y="290" font-size="20" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="start">800</text>
+                <text id="alt_lower_3t" x="34" y="350" font-size="24" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="end">4</text>
+                <text id="alt_lower_3" x="34" y="350" font-size="20" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="end">700</text>
+            </g>
+        </g> 
+             
+        <!-- altimeter dials -->
+        <g transform="translate(5,170)">
+            <path d="M0,0 L7,-7 L7,-14 A4,4,90,0,1,11,-17 L58,-17 L58,-26 A4,4,90,0,1,62,-30 L84,-30 A4,4,90,0,1,88,-26 L88,26 A4,4,90,0,1,84,30 L62,30 A4,4,90,0,1,58,26 L58,17 L11,17 A4,4,90,0,1,7,14 L7,7 L0,0" fill="black" stroke="#666666"></path>         
+            <g clip-path="url(#altimeter_dial_clip)">
+                <g transform="translate(60,0)">
+                    
+                    <use id="digit12_tape" href="#altimeter_dial_double"></use>
+                </g>
+                <g transform="translate(45,0)">
+                    <use id="digit3_tape" href="#altimeter_dial_small"></use>
+                </g>
+                <g transform="translate(26,0)">
+                    <use id="digit4_tape" href="#altimeter_dial_large"></use>
+                </g>
+                <g transform="translate(6,0)">
+                    <use id="digit5_tape" href="#altimeter_dial_large"></use>
+                </g>
+                <rect x="0" y="-30" width="90" height="16" mask="url(#grad_alt_up_fade)"></rect>
+                <rect x="0" y="15" width="90" height="16" mask="url(#grad_alt_down_fade)"></rect>
+            </g>
+            
+        </g>
+    </g>
+
+</svg>

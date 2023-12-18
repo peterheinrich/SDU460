@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script src="3rdParty/leaflet.js"></script>
+    <script src="3rdParty/leaflet-rotate.js"></script>
+    <link rel="stylesheet" href="3rdParty/leaflet.css" />    
+
+    <script src="Header/SplitButton.js" type="module"></script>
+
+    <script src="SDU460.js" type="module"></script>
+    <script src="EIS/RPM.js" type="module"></script>
+    <script src="EIS/OilTemp.js" type="module"></script>
+    <script src="EIS/OilPSI.js" type="module"></script>
+    <script src="EIS/FuelPSI.js" type="module"></script>
+    <script src="EIS/Volts.js" type="module"></script>
+    <script src="EIS/Amps.js" type="module"></script>
+    <script src="EIS/EGTCHT.js" type="module"></script>
+    <script src="PFD/ADI.js" type="module"></script>
+    <script src="PFD/Altimeter.js" type="module"></script>
+    <script src="PFD/ASI.js" type="module"></script>
+    <script src="PFD/CDICompass.js" type="module"></script>
+    <script src="MFD/Map.js" type="module"></script>
+    <script src="Footer/Footer.js" type="module"></script>
+
+
+
+    <link rel="stylesheet" href="SDU460.css">
+
+
+
+</head>
+
+<body style="margin:0; background-color:black;">
+    <g3x-sdu460>
+
+    </g3x-sdu460>
+
+</body>
+
+</html>
+
+<!--html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Display a custom tileset</title>
+    
+    <script src="3rdParty/leaflet.js"></script>
+    <link rel="stylesheet" href="3rdParty/leaflet.css" />
+    <script src="3rdParty/leaflet-rotate.js"></script>
+   
+    <style>
+      html,
+      body,
+      #map {
+
+        height: 720px;
+        width: 530px;
+     
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      const map = L.map("map", { rotate: true, zoomControl: false, rotateControl: false, attributionControl: true }).setView([47.078733, 9.064843], 11);
+
+      L.tileLayer('./3rdParty/openflightmaps/merged/512/latest/{z}/{x}/{y}.png', {
+                maxZoom: 11,
+            }).addTo(map);
+    </script>
+  </body>
+</html-->
