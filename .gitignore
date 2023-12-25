@@ -1,2 +1,6 @@
 3rdParty/
+node_modules/
+openflightmaps/clip/
+openflightmaps/*.zip
+package-lock.json
 .DS_Store

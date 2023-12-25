@@ -41,7 +41,7 @@ class MAP extends HTMLElement {
         if (this.map == null) {
             this.map = L.map("map", { rotate: true, zoomControl: false, rotateControl: false, attributionControl: true }).setView([47.078733, 9.064843], 11);
             this.map.attributionControl.addAttribution("OpenFlightMaps");
-            L.tileLayer('./3rdParty/openflightmaps/merged/512/latest/{z}/{x}/{y}.png', {
+            L.tileLayer('./openflightmaps/clip/merged/512/latest/{z}/{x}/{y}.png', {
                 maxZoom: 11,
             }).addTo(this.map);
         }

@@ -7,6 +7,8 @@ class ASI extends HTMLElement {
         this.ias = 0;
         this.gs = 0;
         this.tas = 0;
+        this.initCompleted = false;
+
         fetch("./PFD/ASI.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
@@ -48,6 +50,26 @@ class ASI extends HTMLElement {
     
 
     renderTapeUI() {
+
+        if(!this.initCompleted) {
+            this.initCompleted = true;
+
+            let greenLine = this.getElementsByTagName("svg")[0].getElementById('greenLine');
+            let whiteLine = this.getElementsByTagName("svg")[0].getElementById('whiteLine');
+            let yellowLine = this.getElementsByTagName("svg")[0].getElementById('yellowLine');
+            let redLine = this.getElementsByTagName("svg")[0].getElementById('redLine');
+
+            greenLine.setAttribute("y1",(-1) * this.getAttribute("green1") * 4 + 170);
+            greenLine.setAttribute("y2", (-1) * this.getAttribute("green2") * 4 + 170);
+            whiteLine.setAttribute("y1",(-1) * this.getAttribute("white1") * 4 + 170);
+            whiteLine.setAttribute("y2", (-1) * this.getAttribute("white2") * 4 + 170);
+            yellowLine.setAttribute("y1",(-1) * this.getAttribute("yellow1") * 4 + 170);
+            yellowLine.setAttribute("y2", (-1) * this.getAttribute("yellow2") * 4 + 170);
+            redLine.setAttribute("y1",(-1) * this.getAttribute("red1") * 4 + 170);
+            redLine.setAttribute("y2", (-1) * 300 * 4 + 170);
+            
+        }
+
         let as_tape = this.getElementsByTagName("svg")[0].getElementById('as_tape');
         as_tape.setAttribute("transform", "translate(0," + (this.ias * 4) + ")");
 
@@ -72,6 +94,8 @@ class ASI extends HTMLElement {
         let digit3 = (this.ias % 10);
         this.scrollAirspeedDigit(as_digit1_tape, digit3);
        
+        
+
     }
 
     
