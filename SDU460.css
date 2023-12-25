@@ -2,6 +2,10 @@ body {
     font-family: "Arial, Helvetica, sans-serif"
 }
 
+.leaflet-layer {
+    filter: hue-rotate(150deg) invert(100%);
+}
+
 .top-line {
     width: 1280px;
     height: 1px;

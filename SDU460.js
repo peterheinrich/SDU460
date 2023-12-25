@@ -74,40 +74,44 @@ class SDU460 extends HTMLElement {
         */
     }
 
-   
+
     connectedCallback() {
         document.addEventListener('pushed', this.mainEventHandler);
-        var attach = function(ws, path) {
+        var attach = function (ws, path) {
             ws.send(JSON.stringify({
                 command: 'addListener',
                 node: path
             }));
         }
         var ws = new WebSocket('ws://localhost:8080/PropertyListener')
-        //var properties = [];
+        var properties = [
+            'instrumentation/altimeter/indicated-altitude-ft',
+            'instrumentation/attitude-indicator/indicated-pitch-deg',
+            'instrumentation/attitude-indicator/indicated-roll-deg',
+            'instrumentation/airspeed-indicator/indicated-speed-kt',
+            'velocities/groundspeed-kt',
+            'velocities/airspeed-kt',
+            'instrumentation/gps/indicated-latitude-deg',
+            'instrumentation/gps/indicated-longitude-deg',
+            'instrumentation/gps/indicated-track-true-deg',
+            'instrumentation/vertical-speed-indicator/indicated-speed-fpm',
+            'instrumentation/heading-indicator/indicated-heading-deg',
+            'engines/engine/rpm',
+            'engines/engine/egt-degf',
+            'engines/engine/cht-degf',
+            'engines/engine/oil-pressure-psi',
+            'engines/engine/oil-temperature-degf',
+            'instrumentation/altimeter/setting-hpa',
+            'systems/electrical/volts',
+            'systems/electrical/amps',
+            'environment/temperature-degc',
+            'sim/time/gmt-string'
+        ];
         console.log(ws);
         ws.onopen = function (ev) {
-            attach(ws,'instrumentation/altimeter/indicated-altitude-ft');
-            attach(ws,'instrumentation/attitude-indicator/indicated-pitch-deg');
-            attach(ws,'instrumentation/attitude-indicator/indicated-roll-deg');
-            attach(ws,'instrumentation/airspeed-indicator/indicated-speed-kt');
-            attach(ws,'velocities/groundspeed-kt');
-            attach(ws,'velocities/airspeed-kt');
-            attach(ws,'instrumentation/gps/indicated-latitude-deg');
-            attach(ws,'instrumentation/gps/indicated-longitude-deg');
-            attach(ws,'instrumentation/gps/indicated-track-true-deg');
-            attach(ws,'instrumentation/vertical-speed-indicator/indicated-speed-fpm');
-            attach(ws,'instrumentation/heading-indicator/indicated-heading-deg');
-            attach(ws,'engines/engine/rpm');
-            attach(ws,'engines/engine/egt-degf');
-            attach(ws,'engines/engine/cht-degf');
-            attach(ws,'engines/engine/oil-pressure-psi');
-            attach(ws,'engines/engine/oil-temperature-degf');
-            attach(ws,'instrumentation/altimeter/setting-hpa');
-            attach(ws,'systems/electrical/volts');
-            attach(ws,'systems/electrical/amps');
-            attach(ws,'environment/temperature-degc');
-            attach(ws,'sim/time/gmt-string');
+            properties.forEach(element => {
+                attach(ws, element);
+            });
         }
         ws.onmessage = function (ev) {
             try {
@@ -128,6 +132,14 @@ class SDU460 extends HTMLElement {
             var msg = 'Error communicating with FlightGear.'
             console.log(msg);
         }
+
+        properties.forEach(element => {
+            fetch("http://localhost:8080/json/" + element).then((response) => {
+                return response.json();
+            }).then((data) => {
+                new MessageBus().publish(element.split("/")[element.split("/").length-1], data.value);
+            });
+        });
 
     }
 

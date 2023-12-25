@@ -47,6 +47,7 @@
             <line x1="-2000" y1="0" x2="2000" y2="0" stroke="white"></line>
         </g>
 
+        <path d="M0,-125 l-8,-16 l16,0 l-8,16" fill="white"></path>
         <g id="bank_indicator" transform="rotate(25,0,0)">
             <path d="M-108,-63 A125,125,120,0,1,108,-63" stroke="white" stroke-width="2"
                 fill="transparent"></path>
@@ -61,7 +62,6 @@
             <use href="#bank_line_short" transform="rotate(10,0,0)"></use>
             <use href="#bank_line_short" transform="rotate(20,0,0)"></use>
             <use href="#bank_line_short" transform="rotate(45,0,0)"></use>
-            <path d="M0,-125 l-8,-16 l16,0 l-8,16" fill="white"></path>
             <g clip-path="url(#pitch_clip)">
                 <g id="pitch">
                     <g> <!-- mask="url(#pitchFadeMask)" -->
