@@ -13,8 +13,8 @@ class MAP extends HTMLElement {
         this.lon = 0;
         this.track = 0;
 
-        new MessageBus().subscribe("latitude-deg", this.update.bind(this));
-        new MessageBus().subscribe("longitude-deg", this.update.bind(this));
+        new MessageBus().subscribe("indicated-latitude-deg", this.update.bind(this));
+        new MessageBus().subscribe("indicated-longitude-deg", this.update.bind(this));
         new MessageBus().subscribe("indicated-track-true-deg", this.update.bind(this));
 
 
@@ -22,11 +22,11 @@ class MAP extends HTMLElement {
 
 
     update(type, message) {
-        if (type === "latitude-deg") {
+        if (type === "indicated-latitude-deg") {
             this.lat = message;
             this.renderUI();
         }
-        else if (type === "longitude-deg") {
+        else if (type === "indicated-longitude-deg") {
             this.lon = message;
             this.renderUI();
         }

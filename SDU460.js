@@ -1,4 +1,4 @@
-import {MessageBus} from './tools/MessageBus.js';
+import { MessageBus } from './tools/MessageBus.js';
 
 
 class SDU460 extends HTMLElement {
@@ -19,80 +19,142 @@ class SDU460 extends HTMLElement {
         this.alt = 0;
         this.airspeed = 0;
         this.gs = 0;
-        this.fullscreen = false;
-
-        setInterval(() => {
-            new MessageBus().publish("rpm", this.rpm++);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("oil-temperature-degf", this.oildegf++);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("oil-pressure-psi", this.oilpsi++);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("volts", this.volts+=0.1);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("amps", this.volts+=0.1);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("egt-degf", this.egt++);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("cht-degf", this.cht++);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("indicated-pitch-deg", Math.sin(this.roll+=0.01) * 20);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("indicated-roll-deg", Math.cos(this.pitch+=0.01) * 30);
-        }, 100);
-
-        setInterval(() => {
-            new MessageBus().publish("indicated-altitude-ft", this.alt+=10);
-        }, 100);
-
-        setInterval(() => {
-            new MessageBus().publish("indicated-speed-kt", this.airspeed++);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("groundspeed-kt", this.gs++);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("indicated-heading-deg", this.gs++);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("indicated-track-true-deg", this.gs / 10);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("latitude-deg", 47.078733 + this.gs / 10000);
-        }, 100);
-        setInterval(() => {
-            new MessageBus().publish("longitude-deg", 9.064843);
-        }, 100);
+        this.splitScreen = false;
+        /*
+                setInterval(() => {
+                    new MessageBus().publish("rpm", this.rpm++);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("oil-temperature-degf", this.oildegf++);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("oil-pressure-psi", this.oilpsi++);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("volts", this.volts += 0.1);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("amps", this.volts += 0.1);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("egt-degf", this.egt++);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("cht-degf", this.cht++);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("indicated-pitch-deg", Math.sin(this.roll += 0.01) * 20);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("indicated-roll-deg", Math.cos(this.pitch += 0.01) * 30);
+                }, 100);
         
+                setInterval(() => {
+                    new MessageBus().publish("indicated-altitude-ft", this.alt += 10);
+                }, 100);
+        
+                setInterval(() => {
+                    new MessageBus().publish("indicated-speed-kt", this.airspeed++);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("groundspeed-kt", this.gs++);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("indicated-heading-deg", this.gs++);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("indicated-track-true-deg", this.gs / 10);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("latitude-deg", 47.078733 + this.gs / 10000);
+                }, 100);
+                setInterval(() => {
+                    new MessageBus().publish("longitude-deg", 9.064843);
+                }, 100);
+        */
     }
-    
+
+   
     connectedCallback() {
-        document.addEventListener('click', (event) => {
-                this.fullscreen = !this.fullscreen;
-            
-            if(this.fullscreen) {
+        document.addEventListener('pushed', this.mainEventHandler);
+        var attach = function(ws, path) {
+            ws.send(JSON.stringify({
+                command: 'addListener',
+                node: path
+            }));
+        }
+        var ws = new WebSocket('ws://localhost:8080/PropertyListener')
+        //var properties = [];
+        console.log(ws);
+        ws.onopen = function (ev) {
+            attach(ws,'instrumentation/altimeter/indicated-altitude-ft');
+            attach(ws,'instrumentation/attitude-indicator/indicated-pitch-deg');
+            attach(ws,'instrumentation/attitude-indicator/indicated-roll-deg');
+            attach(ws,'instrumentation/airspeed-indicator/indicated-speed-kt');
+            attach(ws,'velocities/groundspeed-kt');
+            attach(ws,'velocities/airspeed-kt');
+            attach(ws,'instrumentation/gps/indicated-latitude-deg');
+            attach(ws,'instrumentation/gps/indicated-longitude-deg');
+            attach(ws,'instrumentation/gps/indicated-track-true-deg');
+            attach(ws,'instrumentation/vertical-speed-indicator/indicated-speed-fpm');
+            attach(ws,'instrumentation/heading-indicator/indicated-heading-deg');
+            attach(ws,'engines/engine/rpm');
+            attach(ws,'engines/engine/egt-degf');
+            attach(ws,'engines/engine/cht-degf');
+            attach(ws,'engines/engine/oil-pressure-psi');
+            attach(ws,'engines/engine/oil-temperature-degf');
+            attach(ws,'instrumentation/altimeter/setting-hpa');
+            attach(ws,'systems/electrical/volts');
+            attach(ws,'systems/electrical/amps');
+            attach(ws,'environment/temperature-degc');
+            attach(ws,'sim/time/gmt-string');
+        }
+        ws.onmessage = function (ev) {
+            try {
+                var data = JSON.parse(ev.data);
+                new MessageBus().publish(data.name, data.value);
+
+
+            } catch (e) {
+                console.log('Exception in onmessage:' + e)
+            }
+        }
+        ws.onclose = function (ev) {
+            var msg = 'Lost connection to FlightGear.'
+            console.log(msg);
+        }
+
+        ws.onerror = function (ev) {
+            var msg = 'Error communicating with FlightGear.'
+            console.log(msg);
+        }
+
+    }
+
+    mainEventHandler(event) {
+        if (event.target.getAttribute('id') === "btnSplit") {
+
+            this.splitScreen = !this.splitScreen;
+
+            if (this.splitScreen) {
                 let adi = document.getElementsByTagName("mfd-map")[0].setAttribute("style", "visibility: hidden; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
                 document.getElementsByTagName("pfd-adi")[0].setAttribute("fullscreen", "true");
-                document.getElementsByTagName("pfd-altimeter")[0].setAttribute("style","position:absolute; top: 100px; left: 940px;");
-                document.getElementsByTagName("pfd-asi")[0].setAttribute("style","position:absolute; top: 100px; left: 440px;");
-                document.getElementsByTagName("pfd-cdi-compass")[0].setAttribute("style","position:absolute; top: 425px; left: 530px;");
+                document.getElementsByTagName("pfd-altimeter")[0].setAttribute("style", "position:absolute; top: 100px; left: 940px;");
+                document.getElementsByTagName("pfd-asi")[0].setAttribute("style", "position:absolute; top: 100px; left: 440px;");
+                document.getElementsByTagName("pfd-cdi-compass")[0].setAttribute("style", "position:absolute; top: 425px; left: 530px;");
+                document.getElementsByTagName("pfd-vsi")[0].setAttribute("style", "position:absolute; top: 140px; left: 1038px;");
+
             }
             else {
                 let adi = document.getElementsByTagName("mfd-map")[0].setAttribute("style", "position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
                 document.getElementsByTagName("pfd-adi")[0].setAttribute("fullscreen", "false");
-                document.getElementsByTagName("pfd-altimeter")[0].setAttribute("style","position:absolute; top: 100px; left: 615px;");
-                document.getElementsByTagName("pfd-asi")[0].setAttribute("style","position:absolute; top: 100px; left: 240px;");
-                document.getElementsByTagName("pfd-cdi-compass")[0].setAttribute("style","position:absolute; top: 425px; left: 290px;");
+                document.getElementsByTagName("pfd-altimeter")[0].setAttribute("style", "position:absolute; top: 100px; left: 590px;");
+                document.getElementsByTagName("pfd-asi")[0].setAttribute("style", "position:absolute; top: 100px; left: 240px;");
+                document.getElementsByTagName("pfd-cdi-compass")[0].setAttribute("style", "position:absolute; top: 425px; left: 290px;");
+                document.getElementsByTagName("pfd-vsi")[0].setAttribute("style", "position:absolute; top: 140px; left: 688px;");
             }
-        });
+
+        }
     }
 
 

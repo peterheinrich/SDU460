@@ -46,7 +46,7 @@
         </rect>
         <text x="5" y="11" fill="white" font-weight="bold" font-size="16" alignment-baseline="central"
             text-anchor="start">LCL</text>
-        <text id="time" x="132" y="11" fill="white" font-weight="bold" font-size="16" alignment-baseline="central"
+        <text id="gmt" x="132" y="11" fill="white" font-weight="bold" font-size="16" alignment-baseline="central"
             text-anchor="end">08:00:30am</text>
     </g>
     <g transform="translate(721,0)">

@@ -1,0 +1,45 @@
+<svg viewBox="0 0 550 710" xmlns="http://www.w3.org/2000/svg" width="550" height="710"
+    font-family="Arial, Helvetica, sans-serif">
+    <g transform="translate(0,130)">
+        <path d="M10,5 L16,8 A8,3,55,0,1,24,19 L24,125 A4,4,-90,0,1,21,128 L0,128 L0,0" fill="black" opacity="0.6"></path>
+        <path d="M10,-5 L16,-8 A8,-3,-55,0,0,24,-19 L24,-125 A4,4,-90,0,0,21,-128 L0,-128 L0,0" fill="black" opacity="0.6"></path>
+        <line x1="0" y1="-121" x2="0" y2="121" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-120" x2="8" y2="-120" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-105" x2="8" y2="-105" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-90" x2="8" y2="-90" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-81" x2="4" y2="-81" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-72" x2="4" y2="-72" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-63" x2="4" y2="-63" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-54" x2="4" y2="-54" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-45" x2="8" y2="-45" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-36" x2="4" y2="-36" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-27" x2="4" y2="-27" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-18" x2="4" y2="-18" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="-9" x2="4" y2="-9" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="9" x2="4" y2="9" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="18" x2="4" y2="18" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="27" x2="4" y2="27" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="36" x2="4" y2="36" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="45" x2="8" y2="45" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="54" x2="4" y2="54" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="63" x2="4" y2="63" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="72" x2="4" y2="72" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="81" x2="4" y2="81" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="90" x2="8" y2="90" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="105" x2="8" y2="105" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="120" x2="8" y2="120" stroke="#CCCCCC" stroke-width="2"></line>
+        <text x="10" y="-45" fill="#CCCCCC" font-size="12" font-weight="bold" alignment-baseline="middle">.5</text>
+        <text x="10" y="45" fill="#CCCCCC" font-size="12" font-weight="bold" alignment-baseline="middle">.5</text>
+        <text x="10" y="-90" fill="#CCCCCC" font-size="16" font-weight="bold" alignment-baseline="middle">1</text>
+        <text x="10" y="90" fill="#CCCCCC" font-size="16" font-weight="bold" alignment-baseline="middle">1</text>
+        <text x="10" y="-120" fill="#CCCCCC" font-size="16" font-weight="bold" alignment-baseline="middle">2</text>
+        <text x="10" y="120" fill="#CCCCCC" font-size="16" font-weight="bold" alignment-baseline="middle">2</text>
+        <line x1="0" y1="0" x2="14" y2="-7" stroke="#CCCCCC" stroke-width="2"></line>
+        <line x1="0" y1="0" x2="14" y2="7" stroke="#CCCCCC" stroke-width="2"></line>
+        <g id="vsi">
+            <path d="M4,0 L20,-8 L20,8 L4,0" stroke="black" fill="white" stroke-width="2"></path>
+            <line x1="0" y1="0" x2="6" y2="3" stroke="#F000F0" stroke-width="2"></line>
+            <line x1="0" y1="0" x2="6" y2="-3" stroke="#F000F0" stroke-width="2"></line>
+        </g>
+    </g>
+</svg>

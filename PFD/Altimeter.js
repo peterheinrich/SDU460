@@ -5,17 +5,23 @@ class ALTIMETER extends HTMLElement {
         super();
 
         this.altitude = 0;
+        this.qnh = 0;
 
         fetch("./PFD/Altimeter.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 
         new MessageBus().subscribe("indicated-altitude-ft", this.update.bind(this));
+        new MessageBus().subscribe("setting-hpa", this.update.bind(this));
+
     }
 
     update(type, message) {
         if (type === "indicated-altitude-ft") {
             this.altitude = message;
+        }
+        else if (type === "setting-hpa") {
+            this.qnh = Math.round(message);
         }
         this.renderUI();
     }
@@ -82,6 +88,9 @@ class ALTIMETER extends HTMLElement {
         l3t.innerHTML = Math.floor((nearest - 300) / 1000);
         l3.innerHTML = ('000' + Math.floor(nearest - 300) % 1000).substr(-3);
         tape.setAttribute("transform", "translate(0," + (distance / 100 * 60) + ")");
+    
+        let qnh = this.getElementsByTagName("svg")[0].getElementById('qnh');
+        qnh.innerHTML = this.qnh;
     }
 
 

@@ -1,10 +1,10 @@
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class SplitButton extends HTMLElement {
+class Com1Button extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./Header/SplitButton.html").then(t => t.text()).then(r => {
+        fetch("./Header/Com1Button.html").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
         this.addEventListener('click',this.click);
@@ -21,4 +21,4 @@ class SplitButton extends HTMLElement {
         );
     } 
 }
-customElements.define("sdu-splitbutton", SplitButton);
+customElements.define("sdu-com1btn", Com1Button);

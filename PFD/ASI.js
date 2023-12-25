@@ -6,13 +6,14 @@ class ASI extends HTMLElement {
 
         this.ias = 0;
         this.gs = 0;
-
+        this.tas = 0;
         fetch("./PFD/ASI.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 
         new MessageBus().subscribe("indicated-speed-kt", this.updateIAS.bind(this));
         new MessageBus().subscribe("groundspeed-kt", this.updateGS.bind(this));
+        new MessageBus().subscribe("airspeed-kt", this.updateTAS.bind(this));
 
     }
 
@@ -20,6 +21,13 @@ class ASI extends HTMLElement {
     updateIAS(type, message) {
         if (type === "indicated-speed-kt") {
             this.ias = message;
+        }
+        this.renderUI();
+    }
+
+    updateTAS(type, message) {
+        if (type === "airspeed-kt") {
+            this.tas = message;
         }
         this.renderTapeUI();
     }
@@ -34,6 +42,8 @@ class ASI extends HTMLElement {
     renderUI() {
         let gs = this.getElementsByTagName("svg")[0].getElementById('gs');
         gs.innerHTML = Math.round(this.gs);
+        let tas = this.getElementsByTagName("svg")[0].getElementById('tas');
+        tas.innerHTML = Math.round(this.tas);
     }
     
 

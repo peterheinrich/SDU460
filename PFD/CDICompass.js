@@ -5,13 +5,15 @@ class CDICOMPASS extends HTMLElement {
         super();
 
         this.heading = 0;
+        this.track = 0;
 
         fetch("./PFD/CDICompass.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });
 
         new MessageBus().subscribe("indicated-heading-deg", this.update.bind(this));
-
+        new MessageBus().subscribe("indicated-track-true-deg", this.updateTrack.bind(this));
+        
     }
 
 
@@ -20,6 +22,18 @@ class CDICOMPASS extends HTMLElement {
             this.heading = message;
         }
         this.renderUI();
+    }
+
+    updateTrack(type, message) {
+        if (type === "indicated-track-true-deg") {
+            this.track = Math.round(message);
+        }
+        this.renderTrack();
+    }
+
+    renderTrack() {
+        let c = this.getElementsByTagName("svg")[0].getElementById('trk-text');
+        c.innerHTML = this.track + "°";
     }
 
     renderUI() {

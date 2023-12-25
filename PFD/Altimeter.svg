@@ -81,7 +81,7 @@
         <path d="M98,305 L98,329 A6,6,90,0,1,92,335 L6,335 A6,6,90,0,1,0,329 L0,305 L98,305" fill="black" fill-opacity="0.4" stroke="gray"></path>
         <text x="75" y="14" font-size="20" font-weight="bold" fill="#00F0F0" alignment-baseline="central" text-anchor="end">5000</text>
         <text x="92" y="17" font-size="12" font-weight="bold" fill="#00F0F0" alignment-baseline="central" text-anchor="end">FT</text>
-        <text x="72" y="320" font-size="20" font-weight="bold" fill="#00F0F0" alignment-baseline="central" text-anchor="end">1013</text>
+        <text id="qnh" x="72" y="320" font-size="20" font-weight="bold" fill="#00F0F0" alignment-baseline="central" text-anchor="end">1013</text>
         <text x="92" y="323" font-size="12" font-weight="bold" fill="#00F0F0" alignment-baseline="central" text-anchor="end">MB</text>
         <!-- Altimeter Tape -->
         <g clip-path="url(#altimeter_tape_clip)">

@@ -10,7 +10,6 @@ class AMPS extends HTMLElement {
 
         this.fpsi = 0;
         new MessageBus().subscribe("amps", this.update.bind(this));
-        console.log("INIT AMPS");
     }
 
     update(type, message) {

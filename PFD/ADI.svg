@@ -45,7 +45,6 @@
             <rect x="-2000" y="-4000" width="4000" height="4000" fill="url('#grad_sky')"></rect>
             <rect x="-2000" y="0" width="4000" height="4000" fill="url('#grad_gnd')" />
             <line x1="-2000" y1="0" x2="2000" y2="0" stroke="white"></line>
-            <line x1="0" x2="0" y1="-30" y2="+30" stroke="white" />
         </g>
 
         <g id="bank_indicator" transform="rotate(25,0,0)">

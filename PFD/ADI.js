@@ -37,7 +37,7 @@ class ADI extends HTMLElement {
     
     updateRoll(type, message) {
         if (type === "indicated-roll-deg") {
-            this.roll = message;
+            this.roll = -message;
         }
         this.renderUI();
     }
