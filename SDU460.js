@@ -99,13 +99,16 @@ class SDU460 extends HTMLElement {
             'engines/engine/rpm',
             'engines/engine/egt-degf',
             'engines/engine/cht-degf',
+            'engines/engine/fuel-flow-gph',
             'engines/engine/oil-pressure-psi',
             'engines/engine/oil-temperature-degf',
             'instrumentation/altimeter/setting-hpa',
             'systems/electrical/volts',
             'systems/electrical/amps',
             'environment/temperature-degc',
-            'sim/time/gmt-string'
+            'sim/time/gmt-string',
+            'consumables/fuel/tank/indicated-level-gal_us',
+            'consumables/fuel/tank[1]/indicated-level-gal_us'
         ];
         console.log(ws);
         ws.onopen = function (ev) {
@@ -116,9 +119,16 @@ class SDU460 extends HTMLElement {
         ws.onmessage = function (ev) {
             try {
                 var data = JSON.parse(ev.data);
-                new MessageBus().publish(data.name, data.value);
-
-
+                var path = data.path;
+                if(path === "/consumables/fuel/tank/indicated-level-gal_us") {
+                    new MessageBus().publish("indicated-level-gal_us_left", data.value);
+                }
+                else if(path === "/consumables/fuel/tank[1]/indicated-level-gal_us") {
+                    new MessageBus().publish("indicated-level-gal_us_right", data.value);
+                }
+                else {
+                    new MessageBus().publish(data.name, data.value);
+                }
             } catch (e) {
                 console.log('Exception in onmessage:' + e)
             }

@@ -4,8 +4,9 @@ class SplitButton extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./Header/SplitButton.html").then(t => t.text()).then(r => {
-            this.innerHTML = r;
+        fetch("./Header/SplitButton.svg").then(t => t.text()).then(r => {
+            this.innerHTML = `<button style="border: none; background: none; outline: none">`+r+`</button>`;
+            console.log(this.innerHTML);
         });
         this.addEventListener('click',this.click);
 

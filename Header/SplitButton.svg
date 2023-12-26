@@ -1,0 +1,23 @@
+<svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" width="80" height="60"
+        font-family="Arial, Helvetica, sans-serif">
+
+        <defs>
+            <!-- Button Gradient -->
+            <linearGradient id="grad_btn" gradientTransform="rotate(90)">
+                <stop offset="0%" stop-color="#000000" />
+                <stop offset="15%" stop-color="#555555" />
+                <stop offset="50%" stop-color="#000000" />
+            </linearGradient>
+            <linearGradient id="grad_scrn" gradientTransform="rotate(90)">
+                <stop offset="0%" stop-color="#B0D0D0" />
+                <stop offset="15%" stop-color="#A0B0B0" />
+                <stop offset="50%" stop-color="#08A0A0" />
+            </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="80" height="59" stroke="#666666" fill="black" stroke-width="2" ry="5" rx="5"></rect>
+        <rect x="2" y="2" width="76" height="55" stroke="black" fill="url(#grad_btn)" stroke-width="2" ry="5" rx="5"></rect>
+        <rect x="10" y="10" width="60" height="30" fill="url(#grad_scrn)" stroke="#809090" ></rect>
+        <path d="M6,25 l2,2 l6,0 l0,-4 l-6,0 l-2,2" fill="#3030FF"></path>
+        <path d="M74,25 l-2,2 l-6,0 l0,-4 l6,0 l2,2" fill="#3030FF"></path>
+        <text x="40" y="54" font-weight="bold" text-anchor="middle" font-size="14" fill="white">Full</text>
+    </svg>

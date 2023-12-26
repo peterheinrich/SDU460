@@ -4,8 +4,8 @@ class Com1Button extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./Header/Com1Button.html").then(t => t.text()).then(r => {
-            this.innerHTML = r;
+        fetch("./Header/Com1Button.svg").then(t => t.text()).then(r => {
+            this.innerHTML = `<button style="border: none; background: none; outline: none">`+r+`</button>`;
         });
         this.addEventListener('click',this.click);
 
