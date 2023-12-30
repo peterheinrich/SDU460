@@ -19,15 +19,32 @@
  */
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class Com1Button extends HTMLElement {
+class ComButton extends HTMLElement {
     constructor() {
         super();
 
-        fetch("./Header/Com1Button.svg").then(t => t.text()).then(r => {
+        fetch("./Header/ComButton.svg").then(t => t.text()).then(r => {
             this.innerHTML = `<button style="border: none; background: none; outline: none">`+r+`</button>`;
         });
+        this.selectedFrequency = "";
         this.addEventListener('click',this.click);
+        new MessageBus().subscribe(this.getAttribute("property"), this.update.bind(this));
 
+    }
+
+    update(type, message) {
+        if (type === this.getAttribute("property")) {
+            this.selectedFrequency = message;
+        }
+        this.renderUI();
+    }
+
+    renderUI() {
+        let c = this.getElementsByTagName("button")[0].getElementsByTagName("svg")[0].getElementsByTagName("g")[0].getElementsByTagName("text")[1];
+        c.innerHTML = this.selectedFrequency;
+        c.setAttribute("fill", this.getAttribute("textcolor"));
+        c = this.getElementsByTagName("button")[0].getElementsByTagName("svg")[0].getElementsByTagName("g")[0].getElementsByTagName("text")[0];
+        c.innerHTML = this.getAttribute("label");
     }
 
     click(event) {
@@ -40,4 +57,4 @@ class Com1Button extends HTMLElement {
         );
     } 
 }
-customElements.define("sdu-com1btn", Com1Button);
+customElements.define("sdu-combtn", ComButton);
