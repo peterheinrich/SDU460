@@ -1,14 +1,11 @@
-<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="160" height="160"
-    font-family="Arial, Helvetica, sans-serif">
+<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="160" height="160" font-family="Arial, Helvetica, sans-serif">
     <g transform="translate(20,10)">
 
         <text x="0" y="-3" fill="white" font-weight="bold" font-size="14" alignment-baseline="central">CHT °F</text>
-        <text id="chtvalue" x="130" y="-3" fill="white" font-weight="bold" font-size="14" text-anchor="end"
-            alignment-baseline="central">300</text>
+        <text id="chtvalue" x="130" y="-3" fill="white" font-weight="bold" font-size="14" text-anchor="end" alignment-baseline="central">300</text>
         <text x="0" y="108" fill="white" font-weight="bold" font-size="14" alignment-baseline="central">EGT
             ° F</text>
-        <text id="egtvalue" x="130" y="108" fill="white" font-weight="bold" font-size="14" text-anchor="end"
-            alignment-baseline="central">300</text>
+        <text id="egtvalue" x="130" y="108" fill="white" font-weight="bold" font-size="14" text-anchor="end" alignment-baseline="central">300</text>
 
         <line x1="0" y1="10" x2="120" y2="10" stroke="white"></line>
 

@@ -22,7 +22,6 @@ import { MessageBus } from '../../tools/MessageBus.js';
 class FUELTANK extends HTMLElement {
     constructor() {
         super();
-        debugger
         fetch("./EIS/FuelTank.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 120 78" xmlns="http://www.w3.org/2000/svg" width="120" height="78" font-family="Arial, Helvetica, sans-serif">
+    <defs>
+        <!-- Button Gradient -->
+        <linearGradient id="grad_btn" gradientTransform="rotate(90)">
+            <stop offset="0%" stop-color="#444444" />
+            <stop offset="30%" stop-color="#000000" />
+        </linearGradient>
+
+    </defs>
+    <rect x="0" y="0" width="120" height="78" stroke="#666666" fill="black" stroke-width="2" ry="5" rx="5">
+    </rect>
+    <g>
+        <rect x="2" y="2" width="116" height="74" stroke="black" fill="url(#grad_btn)" stroke-width="2" ry="5" rx="5"></rect>
+        <text id="frequency" x="60" y="30" font-size="18" font-weight="bold" fill="#DDDDDD" text-anchor="middle" alignment-baseline="central">ON</text>
+        <line x1="30" x2="90" y1="65" y2="65" stroke-width="4" stroke="#33FF33"></line>
+    </g>
+</svg>

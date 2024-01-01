@@ -1,16 +1,13 @@
-<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="160" height="160"
-    font-family="Arial, Helvetica, sans-serif">
+<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="160" height="160" font-family="Arial, Helvetica, sans-serif">
     <g transform="translate(80,80)">
         <circle cx="0" cy="0" r="65" stroke="white"></circle>
-
         <path d="M -54,26.3 A 60,60,0,0,1,42.5,-42.5" stroke-width="7" stroke="#00FF00"></path>
         <path d="M 42.5,-42.5 A 60,60,0,0,1,41,-44" stroke-width="14" stroke="#FF0000"></path>
 
         <path d="M 0,0 L -45,66 L66,66 L66,10 L0,0" fill="black"></path>
         <g id="rpm">
             <circle cx="0" cy="0" r="5" fill="white"></circle>
-            <path d=" M -6,0 L-1,-60 L1,-60 L6,0" transform="rotate(-145,0,0)" stroke="black" fill="white">
-            </path>
+            <path d=" M -6,0 L-1,-60 L1,-60 L6,0" transform="rotate(-145,0,0)" stroke="black" fill="white"></path>
         </g>
         <text x="63" y="24" fill="white" font-weight="bold" font-size="14" text-anchor="end">RPM</text>
         <text id="rpmvalue" x="63" y="45" fill="white" font-weight="bold" font-size="24" text-anchor="end">2900</text>

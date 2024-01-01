@@ -1,0 +1,22 @@
+<svg viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg" width="220" height="60" font-family="Arial, Helvetica, sans-serif">
+    <defs>
+        <!-- Button Gradient -->
+        <linearGradient id="grad_btn" gradientTransform="rotate(90)">
+            <stop offset="0%" stop-color="#000000" />
+            <stop offset="15%" stop-color="#555555" />
+            <stop offset="50%" stop-color="#000000" />
+        </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="220" height="59" stroke="#666666" fill="black" stroke-width="2" ry="5" rx="5"></rect>
+    <g>
+        <rect x="2" y="2" width="123" height="55" stroke="black" fill="url(#grad_btn)" stroke-width="2" ry="5" rx="5"></rect>
+        <text x="65" y="15" font-size="14" font-weight="bold" fill="white" text-anchor="middle" alignment-baseline="central">XPDR</text>
+        <text id="squak" x="10" y="40" font-size="26" font-weight="bold" fill="#00CC00" text-anchor="left" alignment-baseline="central">7000</text>
+        <text id="mode" x="80" y="40" font-size="16" font-weight="bold" fill="#00CC00" text-anchor="left" alignment-baseline="central">GND</text>
+    </g>
+    <g>
+        <rect x="130" y="2" width="88" height="55" stroke="black" fill="url(#grad_btn)" stroke-width="2" ry="5" rx="5"></rect>
+        <text x="175" y="23" font-size="14" font-weight="bold" fill="white" text-anchor="middle" alignment-baseline="central">IDENT</text>
+        <path d="M 140,40l 70,0" stroke-width="3" stroke="#666666"></path>
+    </g>
+</svg>

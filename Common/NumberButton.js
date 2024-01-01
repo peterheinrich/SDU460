@@ -19,32 +19,14 @@
  */
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class ComButton extends HTMLElement {
+class NumberButton extends HTMLElement {
     constructor() {
         super();
-
-        fetch("./Header/ComButton.svg").then(t => t.text()).then(r => {
+        this.number = 1;
+        fetch("./Common/NumberButton.svg").then(t => t.text()).then(r => {
             this.innerHTML = '<button style="border: none; background: none; outline: none">'+r+'</button>';
         });
-        this.selectedFrequency = "";
         this.addEventListener('click',this.click);
-        new MessageBus().subscribe(this.getAttribute("property"), this.update.bind(this));
-
-    }
-
-    update(type, message) {
-        if (type === this.getAttribute("property")) {
-            this.selectedFrequency = message;
-        }
-        this.renderUI();
-    }
-
-    renderUI() {
-        let c = this.getElementsByTagName("button")[0].getElementsByTagName("svg")[0].getElementsByTagName("g")[0].getElementsByTagName("text")[1];
-        c.innerHTML = this.selectedFrequency;
-        c.setAttribute("fill", this.getAttribute("textcolor"));
-        c = this.getElementsByTagName("button")[0].getElementsByTagName("svg")[0].getElementsByTagName("g")[0].getElementsByTagName("text")[0];
-        c.innerHTML = this.getAttribute("label");
     }
 
     click(event) {
@@ -57,4 +39,4 @@ class ComButton extends HTMLElement {
         );
     } 
 }
-customElements.define("sdu-combtn", ComButton);
+customElements.define("common-numberbutton", NumberButton);

@@ -22,7 +22,6 @@ import { MessageBus } from '../../tools/MessageBus.js';
 class FUELFLOW extends HTMLElement {
     constructor() {
         super();
-        debugger
         fetch("./EIS/FuelFlow.svg").then(t => t.text()).then(r => {
             this.innerHTML = r;
         });

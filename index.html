@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
   <!-- External dependencies -->
   <script src="node_modules/leaflet/dist/leaflet.js"></script>
   <script src="node_modules/leaflet-rotate/dist/leaflet-rotate.js"></script>
   <link rel="stylesheet" href="node_modules/leaflet/dist/leaflet.css" />
-  
+
   <!-- OS3X Components -->
+  <script src="Common/BackButton.js" type="module"></script>
+  <script src="Common/BackspaceButton.js" type="module"></script>
+  <script src="Common/EnterButton.js" type="module"></script>
+  <script src="Common/NamedButton.js" type="module"></script>
+  <script src="Common/NumberButton.js" type="module"></script>
+  <script src="Common/RadioButton.js" type="module"></script>
+
   <script src="Header/SplitButton.js" type="module"></script>
   <script src="Header/ComButton.js" type="module"></script>
+  <script src="Header/TransponderButton.js" type="module"></script>
   <script src="SDU460.js" type="module"></script>
   <script src="EIS/RPM.js" type="module"></script>
   <script src="EIS/OilTemp.js" type="module"></script>
@@ -24,6 +33,7 @@
   <script src="PFD/VSI.js" type="module"></script>
   <script src="PFD/CDICompass.js" type="module"></script>
   <script src="MFD/Map.js" type="module"></script>
+  <script src="MFD/Transponder.js" type="module"></script>
   <script src="Footer/Footer.js" type="module"></script>
   <link rel="stylesheet" href="SDU460.css">
 </head>
@@ -31,4 +41,5 @@
 <body style="margin:0; background-color:black;">
   <g3x-sdu460></g3x-sdu460>
 </body>
+
 </html>

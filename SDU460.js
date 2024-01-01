@@ -29,7 +29,7 @@ class SDU460 extends HTMLElement {
     connectedCallback() {
         document.addEventListener('pushed', this.mainEventHandler);
 
-        FlightGearInterface.connect();
+      //  FlightGearInterface.connect();
 
     }
 

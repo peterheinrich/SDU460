@@ -1,8 +1,5 @@
-<svg viewBox="0 0 100 350" xmlns="http://www.w3.org/2000/svg" width="100" height="350"
-    font-family="Arial, Helvetica, sans-serif">
-    
+<svg viewBox="0 0 100 350" xmlns="http://www.w3.org/2000/svg" width="100" height="350" font-family="Arial, Helvetica, sans-serif">
     <defs>
-        
         <clipPath id="altimeter_tape_clip" maskContentUnits="objectBoundingBox">
             <rect x="0" y="30" width="98" height="275"></rect>
         </clipPath>
@@ -17,10 +14,11 @@
             <text x="13" y="-100" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">80</text>
             <text x="13" y="-75" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">60</text>
             <text x="13" y="-50" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">40</text>
-            <text x="13" y="-25" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">20</text>         
+            <text x="13" y="-25" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">20</text>
             <text x="13" y="0" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">00</text>
             <text x="13" y="25" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">80</text>
         </g>
+
         <g id="altimeter_dial_small">
             <text x="7" y="-250" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">0</text>
             <text x="7" y="-225" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">9</text>
@@ -31,7 +29,7 @@
             <text x="7" y="-100" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">4</text>
             <text x="7" y="-75" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">3</text>
             <text x="7" y="-50" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">2</text>
-            <text x="7" y="-25" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">1</text>         
+            <text x="7" y="-25" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">1</text>
             <text x="7" y="0" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">0</text>
             <text x="7" y="25" alignment-baseline="central" fill="white" font-weight="bold" font-size="24" text-anchor="middle">9</text>
         </g>
@@ -47,7 +45,7 @@
             <text x="10" y="-128" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">4</text>
             <text x="10" y="-96" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">3</text>
             <text x="10" y="-64" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">2</text>
-            <text x="10" y="-32" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">1</text>         
+            <text x="10" y="-32" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">1</text>
             <text x="10" y="0" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">0</text>
             <text x="10" y="32" alignment-baseline="central" fill="white" font-weight="bold" font-size="32" text-anchor="middle">9</text>
         </g>
@@ -74,9 +72,8 @@
 
     </defs>
 
-
     <g transform="translate(0,0)">
-        <path d="M0,30 L0,6 A6,6,90,0,1,6,0 L92,0 A6,6,90,0,1,98,6 L98,329 A6,6,90,0,1,92,335 L6,335 A6,6,90,0,1,0,329 L0,6" fill="black" fill-opacity="0.4" ></path>
+        <path d="M0,30 L0,6 A6,6,90,0,1,6,0 L92,0 A6,6,90,0,1,98,6 L98,329 A6,6,90,0,1,92,335 L6,335 A6,6,90,0,1,0,329 L0,6" fill="black" fill-opacity="0.4"></path>
         <path d="M0,30 L0,6 A6,6,-90,0,1,6,0 L92,0 A6,6,90,0,1,98,6 L98,30 L0,30" fill="black" fill-opacity="0.4" stroke="gray"></path>
         <path d="M98,305 L98,329 A6,6,90,0,1,92,335 L6,335 A6,6,90,0,1,0,329 L0,305 L98,305" fill="black" fill-opacity="0.4" stroke="gray"></path>
         <text x="75" y="14" font-size="20" font-weight="bold" fill="#00F0F0" alignment-baseline="central" text-anchor="end">5000</text>
@@ -86,7 +83,7 @@
         <!-- Altimeter Tape -->
         <g clip-path="url(#altimeter_tape_clip)">
             <g id="altimeter_tape" transform="translate(0,0)">
-               
+
                 <use href="#altimeter_tape_long" transform="translate(0,410)"></use>
                 <use href="#altimeter_tape_short" transform="translate(0,398)"></use>
                 <use href="#altimeter_tape_short" transform="translate(0,386)"></use>
@@ -108,8 +105,8 @@
                 <use href="#altimeter_tape_short" transform="translate(0,206)"></use>
                 <use href="#altimeter_tape_short" transform="translate(0,194)"></use>
                 <use href="#altimeter_tape_short" transform="translate(0,182)"></use>
-                
-                
+
+
                 <use href="#altimeter_tape_long" transform="translate(0,170)"></use>
                 <use href="#altimeter_tape_short" transform="translate(0,158)"></use>
                 <use href="#altimeter_tape_short" transform="translate(0,146)"></use>
@@ -148,14 +145,15 @@
                 <text id="alt_lower_3t" x="34" y="350" font-size="24" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="end">4</text>
                 <text id="alt_lower_3" x="34" y="350" font-size="20" font-weight="bold" fill="#CCCCCC" alignment-baseline="central" text-anchor="end">700</text>
             </g>
-        </g> 
-             
+        </g>
+
         <!-- altimeter dials -->
         <g transform="translate(5,170)">
-            <path d="M0,0 L7,-7 L7,-14 A4,4,90,0,1,11,-17 L58,-17 L58,-26 A4,4,90,0,1,62,-30 L84,-30 A4,4,90,0,1,88,-26 L88,26 A4,4,90,0,1,84,30 L62,30 A4,4,90,0,1,58,26 L58,17 L11,17 A4,4,90,0,1,7,14 L7,7 L0,0" fill="black" stroke="#666666"></path>         
+            <path d="M0,0 L7,-7 L7,-14 A4,4,90,0,1,11,-17 L58,-17 L58,-26 A4,4,90,0,1,62,-30 L84,-30 A4,4,90,0,1,88,-26 L88,26 A4,4,90,0,1,84,30 L62,30 A4,4,90,0,1,58,26 L58,17 L11,17 A4,4,90,0,1,7,14 L7,7 L0,0" fill="black"
+                stroke="#666666"></path>
             <g clip-path="url(#altimeter_dial_clip)">
                 <g transform="translate(60,0)">
-                    
+
                     <use id="digit12_tape" href="#altimeter_dial_double"></use>
                 </g>
                 <g transform="translate(45,0)">
@@ -170,7 +168,7 @@
                 <rect x="0" y="-30" width="90" height="16" mask="url(#grad_alt_up_fade)"></rect>
                 <rect x="0" y="15" width="90" height="16" mask="url(#grad_alt_down_fade)"></rect>
             </g>
-            
+
         </g>
     </g>
 
