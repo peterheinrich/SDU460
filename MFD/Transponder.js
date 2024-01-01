@@ -18,15 +18,14 @@
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
 import { MessageBus } from '../../tools/MessageBus.js';
+import { OSModule } from '../../tools/OSModule.js';
 
-class MFDTransponder extends HTMLElement {
+class MFDTransponder extends OSModule {
     constructor() {
-        super();
-
-        fetch("./MFD/Transponder.html").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
-
+        super("./MFD/Transponder.html");
+    }
+    hasLoaded() {
+            console.log(this.getElementsByTagName("div")[0]);
     }
 }
 customElements.define("mfd-transponder", MFDTransponder);

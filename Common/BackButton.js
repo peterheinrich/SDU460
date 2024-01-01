@@ -17,26 +17,11 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
-import { MessageBus } from '../../tools/MessageBus.js';
+import { AbstractButton } from '../../Common/AbstractButton.js';
 
-class BackButton extends HTMLElement {
+class BackButton extends AbstractButton {
     constructor() {
-        super();
-        this.number = 1;
-        fetch("./Common/BackButton.svg").then(t => t.text()).then(r => {
-            this.innerHTML = '<button style="border: none; background: none; outline: none">'+r+'</button>';
-        });
-        this.addEventListener('click',this.click);
+        super("./Common/BackButton.svg", "background","url(#grad_btn)","url(#grad_btn_pressed)");
     }
-
-    click(event) {
-        event.stopPropagation();
-        event.cancleBubble = true;
-        this.dispatchEvent(
-            new CustomEvent('pushed', {
-                bubbles: true,
-            })
-        );
-    } 
 }
 customElements.define("common-backbutton", BackButton);

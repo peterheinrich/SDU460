@@ -6,11 +6,16 @@
             <stop offset="30%" stop-color="#666666" />
             <stop offset="40%" stop-color="#333333" />
             <stop offset="85%" stop-color="#000000" />
-
+        </linearGradient>
+        <linearGradient id="grad_btn1_pressed" gradientTransform="rotate(45)">
+            <stop offset="15%" stop-color="#555555" />
+            <stop offset="30%" stop-color="#DDDDDD" />
+            <stop offset="80%" stop-color="#777777" />
+            <stop offset="85%" stop-color="#000000" />
         </linearGradient>
     </defs>
     <circle cx="35" cy="35" r="33" stroke-width="2px" stroke="#444444"></circle>
-    <circle cx="35" cy="35" r="32" stroke-width="1px" stroke="black" fill="url(#grad_btn1)"></circle>
+    <circle id="background" cx="35" cy="35" r="32" stroke-width="1px" stroke="black" fill="url(#grad_btn1)"></circle>
 
-    <text id="number" x="35" y="33" font-size="32" fill="white" text-anchor="middle" alignment-baseline="central">1</text>
+    <text id="label" x="35" y="33" font-size="32" fill="white" text-anchor="middle" alignment-baseline="central">1</text>
 </svg>
