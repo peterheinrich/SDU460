@@ -17,10 +17,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
-import {FlightGearInterface} from './SimInterface/FlightGear.js'
+import { FlightSimInterface } from '../SimInterface/FlightSimInterface.js'
 class SDU460 extends HTMLElement {
     constructor() {
         super();
+        this.splitScreen = false;
+        this.transponderDialog = false;
         fetch("./SDU460.html").then(r => r.text()).then(t => {
             this.innerHTML = t;
         });
@@ -28,8 +30,9 @@ class SDU460 extends HTMLElement {
 
     connectedCallback() {
         document.addEventListener('pushed', this.mainEventHandler);
+        document.addEventListener('closerequest', this.closeOverlay);
 
-      //  FlightGearInterface.connect();
+        FlightSimInterface.getInstance().connect();
 
     }
 
@@ -39,27 +42,32 @@ class SDU460 extends HTMLElement {
             this.splitScreen = !this.splitScreen;
 
             if (this.splitScreen) {
-                let adi = document.getElementsByTagName("mfd-map")[0].setAttribute("style", "visibility: hidden; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
-                document.getElementsByTagName("pfd-adi")[0].setAttribute("fullscreen", "true");
-                document.getElementsByTagName("pfd-altimeter")[0].setAttribute("style", "position:absolute; top: 100px; left: 940px;");
-                document.getElementsByTagName("pfd-asi")[0].setAttribute("style", "position:absolute; top: 100px; left: 440px;");
-                document.getElementsByTagName("pfd-cdi-compass")[0].setAttribute("style", "position:absolute; top: 425px; left: 530px;");
-                document.getElementsByTagName("pfd-vsi")[0].setAttribute("style", "position:absolute; top: 140px; left: 1038px;");
-
+                document.getElementsByTagName("sdu460-pfd")[0].setAttribute("fullscreen", "true");
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("mfdpage", "hidden");
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
             }
             else {
-                let adi = document.getElementsByTagName("mfd-map")[0].setAttribute("style", "position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
-                document.getElementsByTagName("pfd-adi")[0].setAttribute("fullscreen", "false");
-                document.getElementsByTagName("pfd-altimeter")[0].setAttribute("style", "position:absolute; top: 100px; left: 590px;");
-                document.getElementsByTagName("pfd-asi")[0].setAttribute("style", "position:absolute; top: 100px; left: 240px;");
-                document.getElementsByTagName("pfd-cdi-compass")[0].setAttribute("style", "position:absolute; top: 425px; left: 290px;");
-                document.getElementsByTagName("pfd-vsi")[0].setAttribute("style", "position:absolute; top: 140px; left: 688px;");
+                document.getElementsByTagName("sdu460-pfd")[0].setAttribute("fullscreen", "false");
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("mfdpage", "map");
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
             }
-
         }
         else if (event.target.getAttribute('id') === "btnCom1") {
             FlightGearInterface.com1SwapFrequencies();
         }
+        else if (event.target.getAttribute('id') === "xpdr") {
+            this.transponderDialog = !this.transponderDialog;
+            if (this.transponderDialog) {
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "transponder");
+            }
+            else {
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
+            }
+        }
+
+    }
+    closeOverlay() {
+        document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
     }
 }
 

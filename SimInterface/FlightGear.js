@@ -1,6 +1,37 @@
+/*
+ * Copyright (C) 2023, Peter Heinrich <peter@open-simulations.ch>
+ * 
+ * This file is part of OS3X-Touch, a visual look alike of a well
+ * known avionics system for use in desktop flight simulators.
+ * 
+ * OS3X-Touch is free software: you can redistribute it and/or modify it 
+ * under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation, either version 3 of the License, or 
+ * (at your option) any later version.
+ * 
+ * OS3X-Touch is distributed in the hope that it will be useful, but 
+ * WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License 
+ * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
+ */
 import { MessageBus } from '../tools/MessageBus.js';
-export class FlightGearInterface {
-    static connect() {
+import { FlightSimInterface } from './FlightSimInterface.js';
+
+export class FlightGear {
+
+    /* Singleton pattern for FlightGearInterface */
+    constructor() {
+        if(FlightGear._instance) {
+            return FlightGear._instance;
+        }
+        FlightGear._instance = this;
+        this.hasConnection = false;
+    }
+
+    connect() {
         var attach = function (ws, path) {
             ws.send(JSON.stringify({
                 command: 'addListener',
@@ -21,6 +52,9 @@ export class FlightGearInterface {
             'instrumentation/gps/indicated-track-true-deg',
             'instrumentation/vertical-speed-indicator/indicated-speed-fpm',
             'instrumentation/heading-indicator/indicated-heading-deg',
+            'instrumentation/transponder/id-code',
+            'instrumentation/transponder/ident',
+            'instrumentation/transponder/inputs/knob-mode',
             'engines/engine/rpm',
             'engines/engine/egt-degf',
             'engines/engine/cht-degf',
@@ -41,6 +75,7 @@ export class FlightGearInterface {
             properties.forEach(element => {
                 attach(ws, element);
             });
+            FlightSimInterface.getInstance().hasConnection = true;
         }
         ws.onmessage = function (ev) {
             try {
@@ -61,15 +96,23 @@ export class FlightGearInterface {
         }
         ws.onclose = function (ev) {
             console.log("Lost connection");
+            this.hasConnection = false;
         }
 
         ws.onerror = function (ev) {
             console.log("Com Error");
+            this.hasConnection = false;
+            setTimeout(FlightSimInterface.getInstance().connect, 10000);
+            console.log("reconnecting ...")
         }
 
         /* read all parameters initially from sim */
         var rereadAll = function () {
+            if(!FlightSimInterface.getInstance().hasConnection) {
+                return;
+            }
             properties.forEach(element => {
+                if(!FlightSimInterface.getInstance().hasConnection) return;
                 fetch("http://localhost:8080/json/" + element).then((response) => {
                     return response.json();
                 }).then((data) => {
@@ -80,23 +123,14 @@ export class FlightGearInterface {
         setInterval(rereadAll, 1000);
     }
 
-    static com1SwapFrequencies() {
-        fetch("http://localhost:8080/json/instrumentation/comm/frequencies/selected-channel").then((response) => {
-                return response.json();
-            }).then((freqSelected) => {
-                fetch("http://localhost:8080/json/instrumentation/comm/frequencies/standby-channel").then((response) => {
-                    return response.json();
-                }).then((freqStandBy) => {
-                    console.log(JSON.stringify({value:freqSelected.value}));
-                    console.log(freqStandBy.value);
-                    fetch("http://localhost:8080/json/instrumentation/comm/frequencies/selected-channel", {method:"POST", body:JSON.stringify({value:freqStandBy.value})}).then((data) => {
-                        console.log(data);
-                    });
-                    fetch("http://localhost:8080/json/instrumentation/comm/frequencies/standby-channel", {method:"POST", body:JSON.stringify({value:freqSelected.value})}).then((data) => {
-                        console.log(data);
-                    });
+    async readProperty(path) {
+        return fetch("http://localhost:8080/json/" + path).then((response) => {
+            return response.json();
+        });
+    };
 
-                });
-            });
-    }
+    async writeProperty(path, val) {
+        fetch("http://localhost:8080/json/" + path, { method: "POST", body: JSON.stringify({ value: val }) }).then((data) => {
+        });
+    };
 }

@@ -15,7 +15,7 @@
     </rect>
     <g>
         <rect id="background" x="2" y="2" width="116" height="74" stroke="black" fill="url(#grad_btn)" stroke-width="2" ry="5" rx="5"></rect>
-        <text id="label" x="60" y="30" font-size="18" font-weight="bold" fill="#DDDDDD" text-anchor="middle" alignment-baseline="central">ON</text>
-        <line x1="30" x2="90" y1="65" y2="65" stroke-width="4" stroke="#33FF33"></line>
+        <text id="label" x="60" y="30" font-size="18" font-weight="bold" fill="#DDDDDD" text-anchor="middle" alignment-baseline="central">NAME</text>
+        <line id="colorbar" x1="30" x2="90" y1="65" y2="65" stroke-width="4" stroke="#33FF33"></line>
     </g>
 </svg>

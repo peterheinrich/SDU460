@@ -15,6 +15,6 @@
     </rect>
     <g>
         <rect id="background" x="2" y="2" width="124" height="74" stroke="black" fill="url(#grad_btn)" stroke-width="2" ry="5" rx="5"></rect>
-        <text id="label" x="64" y="40" font-size="22" font-weight="bold" fill="#DDDDDD" text-anchor="middle" alignment-baseline="central">VFR</text>
+        <text id="label" x="64" y="40" font-size="22" font-weight="bold" fill="#DDDDDD" text-anchor="middle" alignment-baseline="central">NAME</text>
     </g>
 </svg>

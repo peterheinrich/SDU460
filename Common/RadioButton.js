@@ -20,14 +20,39 @@
 import { AbstractButton } from '../../Common/AbstractButton.js';
 
 class RadioButton extends AbstractButton {
-    
+    static get observedAttributes() {
+        return ['on'];
+    }
     constructor() {
         super("./Common/RadioButton.svg", "background","url(#grad_btn)","url(#grad_btn_pressed)");
+        this.isOn = false;
+        this.initCompleted = false;
     }
 
     hasLoaded() {
         let c = this.getElementsByTagName("svg")[0].getElementById("label");
         c.innerHTML = this.getAttribute("label");
+        this.isOn = this.getAttribute("on");
+        this.initCompleted = true;
+        this.updateUI();
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if(name === "on") {
+            this.isOn = newValue;
+        }
+        this.updateUI();
+    }
+
+    updateUI() {
+        if(!this.initCompleted) return;
+        let c = this.getElementsByTagName("svg")[0].getElementById("colorbar");
+        if(this.isOn === "true") {
+            c.setAttribute("stroke", "#33FF33");
+        }
+        else {
+            c.setAttribute("stroke", "#333333");
+        }
     }
 }
 customElements.define("common-radiobutton", RadioButton);

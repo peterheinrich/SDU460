@@ -16,7 +16,6 @@ export class OSModule extends HTMLElement {
             },"100");
         }
         else {
-            console.log("called!")
             this.hasLoaded();
         }
     }

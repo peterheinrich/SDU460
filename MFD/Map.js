@@ -57,15 +57,15 @@ class MAP extends HTMLElement {
 
 
     renderUI() {
+        if(this.lat == 0 || this.lon == 0) return;
         if (this.map == null) {
-            this.map = L.map("map", { rotate: true, zoomControl: false, rotateControl: false, attributionControl: true }).setView([47.078733, 9.064843], 11);
+            this.map = L.map("map", { rotate: true, zoomControl: false, rotateControl: false, attributionControl: true }).setView([this.lat, this.lon], 11);
             this.map.attributionControl.addAttribution("OpenFlightMaps");
             L.tileLayer('./openflightmaps/clip/merged/512/latest/{z}/{x}/{y}.png', {
                 maxZoom: 11,
             }).addTo(this.map);
         }
         this.map.setView([this.lat, this.lon], 11)
-
     }
 
     updateMapOrientation() {

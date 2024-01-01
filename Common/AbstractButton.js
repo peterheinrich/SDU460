@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
-import { OSModule } from '../../tools/OSModule.js';
+import { OSModule } from '../tools/OSModule.js';
 
 export class AbstractButton extends OSModule {
 
@@ -63,7 +63,7 @@ export class AbstractButton extends OSModule {
         event.stopPropagation();
         event.cancleBubble = true;
         this.dispatchEvent(
-            new CustomEvent('pushed', {
+            new CustomEvent('button', {
                 bubbles: true,
             })
         );
