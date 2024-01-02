@@ -17,20 +17,17 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class ASI extends HTMLElement {
+class ASI extends OSModule {
     constructor() {
-        super();
+        super("./PFD/ASI.svg");
 
         this.ias = 0;
         this.gs = 0;
         this.tas = 0;
         this.initCompleted = false;
-
-        fetch("./PFD/ASI.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
 
         new MessageBus().subscribe("indicated-speed-kt", this.updateIAS.bind(this));
         new MessageBus().subscribe("groundspeed-kt", this.updateGS.bind(this));
@@ -61,40 +58,40 @@ class ASI extends HTMLElement {
     }
 
     renderUI() {
-        let gs = this.getElementsByTagName("svg")[0].getElementById('gs');
+        let gs = this.getLocalElementByID('gs');
         gs.innerHTML = Math.round(this.gs);
-        let tas = this.getElementsByTagName("svg")[0].getElementById('tas');
+        let tas = this.getLocalElementByID('tas');
         tas.innerHTML = Math.round(this.tas);
     }
-    
+
 
     renderTapeUI() {
 
-        if(!this.initCompleted) {
+        if (!this.initCompleted) {
             this.initCompleted = true;
 
-            let greenLine = this.getElementsByTagName("svg")[0].getElementById('greenLine');
-            let whiteLine = this.getElementsByTagName("svg")[0].getElementById('whiteLine');
-            let yellowLine = this.getElementsByTagName("svg")[0].getElementById('yellowLine');
-            let redLine = this.getElementsByTagName("svg")[0].getElementById('redLine');
+            let greenLine = this.getLocalElementByID('greenLine');
+            let whiteLine = this.getLocalElementByID('whiteLine');
+            let yellowLine = this.getLocalElementByID('yellowLine');
+            let redLine = this.getLocalElementByID('redLine');
 
-            greenLine.setAttribute("y1",(-1) * this.getAttribute("green1") * 4 + 170);
+            greenLine.setAttribute("y1", (-1) * this.getAttribute("green1") * 4 + 170);
             greenLine.setAttribute("y2", (-1) * this.getAttribute("green2") * 4 + 170);
-            whiteLine.setAttribute("y1",(-1) * this.getAttribute("white1") * 4 + 170);
+            whiteLine.setAttribute("y1", (-1) * this.getAttribute("white1") * 4 + 170);
             whiteLine.setAttribute("y2", (-1) * this.getAttribute("white2") * 4 + 170);
-            yellowLine.setAttribute("y1",(-1) * this.getAttribute("yellow1") * 4 + 170);
+            yellowLine.setAttribute("y1", (-1) * this.getAttribute("yellow1") * 4 + 170);
             yellowLine.setAttribute("y2", (-1) * this.getAttribute("yellow2") * 4 + 170);
-            redLine.setAttribute("y1",(-1) * this.getAttribute("red1") * 4 + 170);
+            redLine.setAttribute("y1", (-1) * this.getAttribute("red1") * 4 + 170);
             redLine.setAttribute("y2", (-1) * 300 * 4 + 170);
-            
+
         }
 
-        let as_tape = this.getElementsByTagName("svg")[0].getElementById('as_tape');
+        let as_tape = this.getLocalElementByID('as_tape');
         as_tape.setAttribute("transform", "translate(0," + (this.ias * 4) + ")");
 
-        let as_digit3_tape = this.getElementsByTagName("svg")[0].getElementById('as_digit3_tape');
-        let as_digit2_tape = this.getElementsByTagName("svg")[0].getElementById('as_digit2_tape');
-        let as_digit1_tape = this.getElementsByTagName("svg")[0].getElementById('as_digit1_tape');
+        let as_digit3_tape = this.getLocalElementByID('as_digit3_tape');
+        let as_digit2_tape = this.getLocalElementByID('as_digit2_tape');
+        let as_digit1_tape = this.getLocalElementByID('as_digit1_tape');
 
         // blank if leading digit is zero
         if (Math.floor(this.ias / 100) === 0) {
@@ -112,12 +109,12 @@ class ASI extends HTMLElement {
         }
         let digit3 = (this.ias % 10);
         this.scrollAirspeedDigit(as_digit1_tape, digit3);
-       
-        
+
+
 
     }
 
-    
+
     scrollAirspeedDigit(digit_tape, value) {
         digit_tape.setAttribute("transform", "translate(0," + (value * 32) + ")");
     }

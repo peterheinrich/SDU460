@@ -1,4 +1,4 @@
-<svg viewBox="0 0 550 710" xmlns="http://www.w3.org/2000/svg" width="550" height="710" font-family="Arial, Helvetica, sans-serif">
+<svg id="container" viewBox="0 0 550 710" xmlns="http://www.w3.org/2000/svg" width="550" height="710" font-family="Arial, Helvetica, sans-serif">
     <defs>
         <linearGradient id="grad_sky" gradientTransform="rotate(90)">
             <stop offset="5%" stop-color="#3040CC" />
@@ -39,8 +39,8 @@
     </defs>
     <g id="viewport" transform="translate(280,200)">
         <g id="horizon" transform="rotate(25,0,0)">
-            <rect x="-2000" y="-4000" width="4000" height="4000" fill="url('#grad_sky')"></rect>
-            <rect x="-2000" y="0" width="4000" height="4000" fill="url('#grad_gnd')" />
+            <rect x="-2000" y="-4000" width="4000" height="4000" fill="url(#grad_sky)"></rect>
+            <rect x="-2000" y="0" width="4000" height="4000" fill="url(#grad_gnd)" />
             <line x1="-2000" y1="0" x2="2000" y2="0" stroke="white"></line>
         </g>
 

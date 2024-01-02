@@ -17,16 +17,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class EISRPM extends HTMLElement {
+class EISRPM extends OSModule {
     constructor() {
-        super();
-
-        fetch("./EIS/RPM.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
-
+        super("./EIS/RPM.svg");
         this.rpm = 0;
         new MessageBus().subscribe("rpm", this.update.bind(this));
     }
@@ -47,9 +43,9 @@ class EISRPM extends HTMLElement {
             this.rpm = 3200;
         }
         
-        let c = this.getElementsByTagName("svg")[0].getElementById('rpm');
+        let c = this.getLocalElementByID('rpm');
         c.setAttribute("transform", "rotate(" + (211) * (this.rpm - 300) / 2800 + ",0,0)");
-        c = this.getElementsByTagName("svg")[0].getElementById('rpmvalue');
+        c = this.getLocalElementByID('rpmvalue');
         c.innerHTML = Math.round(this.rpm);
 
     }

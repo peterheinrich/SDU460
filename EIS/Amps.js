@@ -17,16 +17,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class AMPS extends HTMLElement {
+class AMPS extends OSModule {
     constructor() {
-        super();
-
-        fetch("./EIS/Amps.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
-
+        super("./EIS/Amps.svg");
         this.fpsi = 0;
         new MessageBus().subscribe("amps", this.update.bind(this));
     }
@@ -39,7 +35,7 @@ class AMPS extends HTMLElement {
     }
 
     renderUI() {
-        let c = this.getElementsByTagName("svg")[0].getElementById('amps');
+        let c = this.getElementByLocalID('amps');
         if (this.amps < -60) {
             c.setAttribute("transform", "translate(0,0)");
         }
@@ -49,7 +45,7 @@ class AMPS extends HTMLElement {
         else {
             c.setAttribute("transform", "translate(" + (this.amps+60)/120*130 + ",0)");
         }
-        c = this.getElementsByTagName("svg")[0].getElementById('ampsvalue');
+        c = this.getElementByLocalID('ampsvalue');
         if(this.amps > 0) {
             c.innerHTML = '+' + Math.round(this.amps);
         }

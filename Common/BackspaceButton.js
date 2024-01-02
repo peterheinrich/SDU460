@@ -20,7 +20,7 @@
 import { AbstractButton } from '../../Common/AbstractButton.js';
 class BackspaceButton extends AbstractButton {
     constructor() {
-        super("./Common/BackspaceButton.svg", "background","url(#grad_btn)","url(#grad_btn_pressed)");
+        super("./Common/BackspaceButton.svg", "background","grad_btn","grad_btn_pressed");
     }
 }
 customElements.define("common-backspacebutton", BackspaceButton);

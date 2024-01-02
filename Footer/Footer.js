@@ -17,21 +17,16 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class Footer extends HTMLElement {
+class Footer extends OSModule {
     constructor() {
-        super();
-
-        fetch("./Footer/Footer.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
-
+        super("./Footer/Footer.svg");
         this.oat = 0;
         this.gmt = "00:00:00";
         new MessageBus().subscribe("temperature-degc", this.update.bind(this));
         new MessageBus().subscribe("gmt-string", this.update.bind(this));
-
     }
 
     update(type, message) {
@@ -45,9 +40,9 @@ class Footer extends HTMLElement {
     }
 
     renderUI() {
-        let oat = this.getElementsByTagName("svg")[0].getElementById('oat');
+        let oat = this.getLocalElementByID('oat');
         oat.innerHTML = this.oat + "°C";
-        let gmt = this.getElementsByTagName("svg")[0].getElementById('gmt');
+        let gmt = this.getLocalElementByID('gmt');
         gmt.innerHTML = this.gmt;  
     }
 }

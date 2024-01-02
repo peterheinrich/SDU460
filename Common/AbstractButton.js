@@ -32,8 +32,8 @@ export class AbstractButton extends OSModule {
     }
 
     mousepressed(event) {
-        let c = this.getElementsByTagName("svg")[0].getElementById(this.backgroundElementName);
-        c.setAttribute("fill", this.styleNamePressedURI);
+        let c = this.getLocalElementByID(this.backgroundElementName);
+        c.setAttribute("fill", this.getLocalSVGDefName(this.styleNamePressedURI));
         document.addEventListener(
             "mouseup",
             (e) => this.mousereleased(c, this.styleNameReleasedURI),
@@ -42,12 +42,12 @@ export class AbstractButton extends OSModule {
     }
 
     mousereleased(element, style) {
-        element.setAttribute("fill", style);
+        element.setAttribute("fill", this.getLocalSVGDefName(style));
     }
 
     touchstart(event) {
-        let c = this.getElementsByTagName("svg")[0].getElementById(this.backgroundElementName);
-        c.setAttribute("fill", this.styleNamePressedURI);
+        let c = this.getLocalElementByID(this.backgroundElementName);
+        c.setAttribute("fill", this.getLocalSVGDefName(this.styleNamePressedURI));
         document.addEventListener(
             "touchend",
             (e) => this.mousereleased(c, this.styleNameReleasedURI),
@@ -55,7 +55,7 @@ export class AbstractButton extends OSModule {
         );
     }
     touchend(element) {
-        element.setAttribute("fill", style);
+        element.setAttribute("fill", this.getLocalSVGDefName(style));
     }
 
     click(event) {

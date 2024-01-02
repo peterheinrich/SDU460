@@ -17,16 +17,15 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from './tools/OSModule.js';
 import { FlightSimInterface } from '../SimInterface/FlightSimInterface.js'
-class SDU460 extends HTMLElement {
+
+class SDU460 extends OSModule {
     constructor() {
-        super();
+        super("./SDU460.html");
         this.splitScreen = false;
         this.transponderDialog = false;
         this.frequencyDialog = false;
-        fetch("./SDU460.html").then(r => r.text()).then(t => {
-            this.innerHTML = t;
-        });
     }
 
     connectedCallback() {
@@ -38,7 +37,8 @@ class SDU460 extends HTMLElement {
     }
 
     mainEventHandler(event) {
-        if (event.target.getAttribute('id') === "btnSplit") {
+        let eventId = event.target.getAttribute('id').split("_")[1];
+        if (eventId === "btnSplit") {
 
             this.splitScreen = !this.splitScreen;
 
@@ -53,7 +53,7 @@ class SDU460 extends HTMLElement {
                 document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
             }
         }
-        else if (event.target.getAttribute('id') === "btnCom1Stby") {
+        else if (eventId === "btnCom1Stby") {
             this.frequencyDialog = !this.frequencyDialog;
             if (this.frequencyDialog) {
                 document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "frequency");
@@ -62,7 +62,7 @@ class SDU460 extends HTMLElement {
                 document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
             }
         }
-        else if (event.target.getAttribute('id') === "xpdr") {
+        else if (eventId === "xpdr") {
             this.transponderDialog = !this.transponderDialog;
             if (this.transponderDialog) {
                 document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "transponder");
@@ -71,11 +71,16 @@ class SDU460 extends HTMLElement {
                 document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
             }
         }
+        else {
+            console.log("Unknown Button with id " + event.target.getAttribute('id') + "pressed");
+        }
 
     }
     closeOverlay() {
         document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
     }
+
+    
 }
 
 customElements.define("g3x-sdu460", SDU460);

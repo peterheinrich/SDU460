@@ -17,16 +17,13 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class EGTCHT extends HTMLElement {
+class EGTCHT extends OSModule {
 
     constructor() {
-        super();
-
-        fetch("./EIS/EGTCHT.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
+        super("./EIS/EGTCHT.svg");
 
         this.cht = 0;
         this.egt = 0;
@@ -54,7 +51,7 @@ class EGTCHT extends HTMLElement {
 
      
 
-        let egt = this.getElementsByTagName("svg")[0].getElementById('egtvalue');
+        let egt = this.getLocalElementByID('egtvalue');
         egt.innerHTML = Math.round(this.egt);
         
         let egtval = 0;
@@ -65,19 +62,19 @@ class EGTCHT extends HTMLElement {
             egtval = this.egt;
         }
         let tpixel = 95 - ((egtval * 1.00 - 1000) / 500) * 80;
-        let c1_egt = this.getElementsByTagName("svg")[0].getElementById('C1_EGT');
+        let c1_egt = this.getLocalElementByID('C1_EGT');
         c1_egt.setAttribute("y2", tpixel);
         tpixel = 95 - ((egtval * 1.01 - 1000) / 500) * 80;
-        let c2_egt = this.getElementsByTagName("svg")[0].getElementById('C2_EGT');
+        let c2_egt = this.getLocalElementByID('C2_EGT');
         c2_egt.setAttribute("y2", tpixel);
         tpixel = 95 - ((egtval * 0.99 - 1000) / 500) * 80;
-        let c3_egt = this.getElementsByTagName("svg")[0].getElementById('C3_EGT');
+        let c3_egt = this.getLocalElementByID('C3_EGT');
         c3_egt.setAttribute("y2", tpixel);
         tpixel = 95 - ((egtval * 1.00 - 1000) / 500) * 80;
-        let c4_egt = this.getElementsByTagName("svg")[0].getElementById('C4_EGT');
+        let c4_egt = this.getLocalElementByID('C4_EGT');
         c4_egt.setAttribute("y2", tpixel);
 
-        let cht = this.getElementsByTagName("svg")[0].getElementById('chtvalue');
+        let cht = this.getLocalElementByID('chtvalue');
         cht.innerHTML = Math.round(this.cht);
 
 
@@ -90,19 +87,19 @@ class EGTCHT extends HTMLElement {
         }
 
         tpixel = 60 - ((chtval * 1.00 - 240) / 160) * 28;
-        let c1_cht = this.getElementsByTagName("svg")[0].getElementById('C1_CHT');
+        let c1_cht = this.getLocalElementByID('C1_CHT');
         c1_cht.setAttribute("y", tpixel);
 
         tpixel = 60 - ((chtval * 1.02 - 240) / 160) * 28;
-        let c2_cht = this.getElementsByTagName("svg")[0].getElementById('C2_CHT');
+        let c2_cht = this.getLocalElementByID('C2_CHT');
         c2_cht.setAttribute("y", tpixel);
 
         tpixel = 60 - ((chtval * 1.03 - 240) / 160) * 28;
-        let c3_cht = this.getElementsByTagName("svg")[0].getElementById('C3_CHT');
+        let c3_cht = this.getLocalElementByID('C3_CHT');
         c3_cht.setAttribute("y", tpixel);
 
         tpixel = 60 - ((chtval * 0.95 - 240) / 160) * 28;
-        let c4_cht = this.getElementsByTagName("svg")[0].getElementById('C4_CHT');
+        let c4_cht = this.getLocalElementByID('C4_CHT');
         c4_cht.setAttribute("y", tpixel);
     }
 }

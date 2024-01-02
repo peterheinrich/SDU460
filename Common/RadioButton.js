@@ -24,13 +24,13 @@ class RadioButton extends AbstractButton {
         return ['on'];
     }
     constructor() {
-        super("./Common/RadioButton.svg", "background","url(#grad_btn)","url(#grad_btn_pressed)");
+        super("./Common/RadioButton.svg", "background","grad_btn","grad_btn_pressed");
         this.isOn = false;
         this.initCompleted = false;
     }
 
     hasLoaded() {
-        let c = this.getElementsByTagName("svg")[0].getElementById("label");
+        let c = this.getLocalElementByID("label");
         c.innerHTML = this.getAttribute("label");
         this.isOn = this.getAttribute("on");
         this.initCompleted = true;
@@ -46,7 +46,7 @@ class RadioButton extends AbstractButton {
 
     updateUI() {
         if(!this.initCompleted) return;
-        let c = this.getElementsByTagName("svg")[0].getElementById("colorbar");
+        let c = this.getLocalElementByID("colorbar");
         if(this.isOn === "true") {
             c.setAttribute("stroke", "#33FF33");
         }

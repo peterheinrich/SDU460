@@ -17,15 +17,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class FUELFLOW extends HTMLElement {
+class FUELFLOW extends OSModule {
     constructor() {
-        super();
-        fetch("./EIS/FuelFlow.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
-
+        super("./EIS/FuelFlow.svg");
         this.flowgph = 0;
         this.initCompleted = false;
         this.max = 0;
@@ -45,7 +42,7 @@ class FUELFLOW extends HTMLElement {
             this.initCompleted = true;
             this.max = Math.round(this.getAttribute("max"));
         }
-        let c = this.getElementsByTagName("svg")[0].getElementById('fuelpsi');
+        let c = this.getLocalElementByID('fuelpsi');
         if (this.flowgph < 0) {
             c.setAttribute("transform", "translate(0,0)");
         }
@@ -55,7 +52,7 @@ class FUELFLOW extends HTMLElement {
         else {
             c.setAttribute("transform", "translate(" + (this.flowgph)/this.max * 130 + ",0)");
         }
-        c = this.getElementsByTagName("svg")[0].getElementById('fuelpsivalue');
+        c = this.getLocalElementByID('fuelpsivalue');
         c.innerHTML = Math.round(this.flowgph * 10) / 10;
     }
 }

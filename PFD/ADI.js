@@ -17,19 +17,16 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class ADI extends HTMLElement {
+class ADI extends OSModule {
     static observedAttributes = ["fullscreen"];
 
     constructor() {
-        super();
+        super("./PFD/ADI.svg");
         this.roll = 0;
         this.pitch = 0;
-
-        fetch("./PFD/ADI.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
 
        new MessageBus().subscribe("indicated-roll-deg", this.updateRoll.bind(this));
        new MessageBus().subscribe("indicated-pitch-deg", this.updatePitch.bind(this));
@@ -38,8 +35,8 @@ class ADI extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
 
-        let svg = this.getElementsByTagName("svg")[0];
-        let viewPort = svg.getElementById('viewport');
+        let svg = this.getLocalElementByID("container");
+        let viewPort = this.getLocalElementByID('viewport');
 
         if(newValue === "false") {
             svg.setAttribute("viewBox", "0 0 550 710");
@@ -69,11 +66,11 @@ class ADI extends HTMLElement {
     }
 
     renderUI() {
-        let horizon = this.getElementsByTagName("svg")[0].getElementById('horizon');
+        let horizon = this.getLocalElementByID('horizon');
         horizon.setAttribute("transform", "rotate(" + this.roll + ",0,0)  translate(0," + 14.5 * this.pitch + ")");
-        let pitchbar = this.getElementsByTagName("svg")[0].getElementById('pitch');
+        let pitchbar = this.getLocalElementByID('pitch');
         pitchbar.setAttribute("transform", "translate(0," + 14.5 * this.pitch + ")");
-        let bank_indicator = this.getElementsByTagName("svg")[0].getElementById('bank_indicator');
+        let bank_indicator = this.getLocalElementByID('bank_indicator');
         bank_indicator.setAttribute("transform", "rotate(" + this.roll + ",0,0)  ");
     }
 

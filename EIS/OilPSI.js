@@ -17,16 +17,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class OILPSI extends HTMLElement {
+class OILPSI extends OSModule {
     constructor() {
-        super();
-
-        fetch("./EIS/OilPSI.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
-
+        super("./EIS/OilPSI.svg");
         this.psi = 0;
         this.initCompleted = false;
         new MessageBus().subscribe("oil-pressure-psi", this.update.bind(this));
@@ -50,14 +46,14 @@ class OILPSI extends HTMLElement {
             let green2 = this.getAttribute("green2") / high_attr * 130; 
             let high = 130;
 
-            let dash2 = this.getElementsByTagName("svg")[0].getElementById('dash2');
-            let dash3 = this.getElementsByTagName("svg")[0].getElementById('dash3');
-            let dash4 = this.getElementsByTagName("svg")[0].getElementById('dash4');
+            let dash2 = this.getLocalElementByID('dash2');
+            let dash3 = this.getLocalElementByID('dash3');
+            let dash4 = this.getLocalElementByID('dash4');
 
-            let line1 = this.getElementsByTagName("svg")[0].getElementById('line1');
-            let line2 = this.getElementsByTagName("svg")[0].getElementById('line2');
-            let line3 = this.getElementsByTagName("svg")[0].getElementById('line3');
-            let line4 = this.getElementsByTagName("svg")[0].getElementById('line4');
+            let line1 = this.getLocalElementByID('line1');
+            let line2 = this.getLocalElementByID('line2');
+            let line3 = this.getLocalElementByID('line3');
+            let line4 = this.getLocalElementByID('line4');
 
             dash2.setAttribute("x1", low);
             dash2.setAttribute("x2", low);
@@ -75,7 +71,7 @@ class OILPSI extends HTMLElement {
             line4.setAttribute("x2", 130);
         }
 
-        let c = this.getElementsByTagName("svg")[0].getElementById('oilpsi');
+        let c = this.getLocalElementByID('oilpsi');
         if (this.psi < 0) {
             c.setAttribute("transform", "translate(0,0)");
         }
@@ -85,7 +81,7 @@ class OILPSI extends HTMLElement {
         else {
             c.setAttribute("transform", "translate(" + (this.psi) / this.getAttribute("high") * 130 + ",0)");
         }
-        c = this.getElementsByTagName("svg")[0].getElementById('oilpsivalue');
+        c = this.getLocalElementByID('oilpsivalue');
         c.innerHTML = Math.round(this.psi);
     }
 }

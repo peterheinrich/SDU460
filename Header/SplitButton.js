@@ -17,17 +17,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
-import { MessageBus } from '../../tools/MessageBus.js';
+import { OSModule } from '../tools/OSModule.js';
 
-class SplitButton extends HTMLElement {
+class SplitButton extends OSModule {
     constructor() {
-        super();
-
-        fetch("./Header/SplitButton.svg").then(t => t.text()).then(r => {
-            this.innerHTML = '<button style="border: none; background: none; outline: none">'+r+'</button>';
-        });
+        super("./Header/SplitButton.svg");
         this.addEventListener('click',this.click);
-
     }
 
     click(event) {

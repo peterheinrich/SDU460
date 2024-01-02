@@ -17,14 +17,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class FUELTANK extends HTMLElement {
+class FUELTANK extends OSModule {
     constructor() {
-        super();
-        fetch("./EIS/FuelTank.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
+        super("./EIS/FuelTank.svg");
 
         this.initCompleted = false;
         this.max = 0;
@@ -51,7 +49,7 @@ class FUELTANK extends HTMLElement {
             this.initCompleted = true;
             this.max = Math.round(this.getAttribute("max")*10)/10;
         }
-        let c = this.getElementsByTagName("svg")[0].getElementById('fuelmarker_left');
+        let c = this.getLocalElementByID('fuelmarker_left');
         if (this.left < 0) {
             c.setAttribute("transform", "translate(0,0)");
         }
@@ -62,7 +60,7 @@ class FUELTANK extends HTMLElement {
             c.setAttribute("transform", "translate(" + (this.left)/this.max * 130 + ",0)");
         }
 
-        c = this.getElementsByTagName("svg")[0].getElementById('fuelmarker_right');
+        c = this.getLocalElementByID('fuelmarker_right');
         if (this.right < 0) {
             c.setAttribute("transform", "translate(0,0)");
         }
@@ -73,9 +71,9 @@ class FUELTANK extends HTMLElement {
             c.setAttribute("transform", "translate(" + (this.right)/this.max * 130 + ",0)");
         }
 
-        c = this.getElementsByTagName("svg")[0].getElementById('fuelleft');
+        c = this.getLocalElementByID('fuelleft');
         c.innerHTML = Math.round(this.left * 10) / 10;
-        c = this.getElementsByTagName("svg")[0].getElementById('fuelright');
+        c = this.getLocalElementByID('fuelright');
         c.innerHTML = Math.round(this.right * 10) / 10;
     }
 }

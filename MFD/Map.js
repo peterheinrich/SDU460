@@ -17,16 +17,13 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class MAP extends HTMLElement {
+class MAP extends OSModule {
     constructor() {
-        super();
+        super("./MFD/Map.html");
         this.map = null;
-
-        fetch("./MFD/Map.html").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
 
         this.lat = 0;
         this.lon = 0;
@@ -59,7 +56,7 @@ class MAP extends HTMLElement {
     renderUI() {
         if(this.lat == 0 || this.lon == 0) return;
         if (this.map == null) {
-            this.map = L.map("map", { rotate: true, zoomControl: false, rotateControl: false, attributionControl: true }).setView([this.lat, this.lon], 11);
+            this.map = L.map(this.UUID + "map", { rotate: true, zoomControl: false, rotateControl: false, attributionControl: true }).setView([this.lat, this.lon], 11);
             this.map.attributionControl.addAttribution("OpenFlightMaps");
             L.tileLayer('./openflightmaps/clip/merged/512/latest/{z}/{x}/{y}.png', {
                 maxZoom: 11,
@@ -70,7 +67,7 @@ class MAP extends HTMLElement {
 
     updateMapOrientation() {
         this.map.setBearing(-1 * this.track);
-        let northpointer = this.getElementsByClassName("northpointer")[0];
+        let northpointer = this.getLocalElementByID("northpointer");
         northpointer.setAttribute("transform", "rotate(" + (-1)*this.track + ",0,-10)");
     }
 }

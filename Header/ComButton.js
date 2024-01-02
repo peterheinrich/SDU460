@@ -17,15 +17,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class ComButton extends HTMLElement {
+class ComButton extends OSModule {
     constructor() {
-        super();
-
-        fetch("./Header/ComButton.svg").then(t => t.text()).then(r => {
-            this.innerHTML = '<button style="border: none; background: none; outline: none">'+r+'</button>';
-        });
+        super("./Header/ComButton.svg");
         this.selectedFrequency = "";
         this.addEventListener('click',this.click);
         new MessageBus().subscribe(this.getAttribute("property"), this.update.bind(this));
@@ -40,10 +37,10 @@ class ComButton extends HTMLElement {
     }
 
     renderUI() {
-        let c = this.getElementsByTagName("button")[0].getElementsByTagName("svg")[0].getElementsByTagName("g")[0].getElementsByTagName("text")[1];
+        let c = this.getLocalElementByID("frequency");
         c.innerHTML = this.selectedFrequency;
         c.setAttribute("fill", this.getAttribute("textcolor"));
-        c = this.getElementsByTagName("button")[0].getElementsByTagName("svg")[0].getElementsByTagName("g")[0].getElementsByTagName("text")[0];
+        c = this.getLocalElementByID("label");
         c.innerHTML = this.getAttribute("label");
     }
 

@@ -17,22 +17,16 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class ALTIMETER extends HTMLElement {
+class ALTIMETER extends OSModule {
     constructor() {
-        super();
-
+        super("./PFD/Altimeter.svg");
         this.altitude = 0;
         this.qnh = 0;
-
-        fetch("./PFD/Altimeter.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
-
         new MessageBus().subscribe("indicated-altitude-ft", this.update.bind(this));
         new MessageBus().subscribe("setting-hpa", this.update.bind(this));
-
     }
 
     update(type, message) {
@@ -47,10 +41,10 @@ class ALTIMETER extends HTMLElement {
 
     renderUI() {
 
-        let tape5 = this.getElementsByTagName("svg")[0].getElementById('digit5_tape');
-        let tape4 = this.getElementsByTagName("svg")[0].getElementById('digit4_tape');
-        let tape3 = this.getElementsByTagName("svg")[0].getElementById('digit3_tape');
-        let tape12 = this.getElementsByTagName("svg")[0].getElementById('digit12_tape');
+        let tape5 = this.getLocalElementByID('digit5_tape');
+        let tape4 = this.getLocalElementByID('digit4_tape');
+        let tape3 = this.getLocalElementByID('digit3_tape');
+        let tape12 = this.getLocalElementByID('digit12_tape');
 
         // blank if leading digit is zero
         if (Math.floor(this.altitude / 10000) === 0) {
@@ -77,21 +71,21 @@ class ALTIMETER extends HTMLElement {
 
         let nearest = Math.round(this.altitude / 100) * 100
         let distance = this.altitude - nearest;
-        let tape = this.getElementsByTagName("svg")[0].getElementById('altimeter_tape');
-        let u3t = this.getElementsByTagName("svg")[0].getElementById('alt_upper_3t');
-        let u3 = this.getElementsByTagName("svg")[0].getElementById('alt_upper_3');
-        let u2t = this.getElementsByTagName("svg")[0].getElementById('alt_upper_2t');
-        let u2 = this.getElementsByTagName("svg")[0].getElementById('alt_upper_2');
-        let u1t = this.getElementsByTagName("svg")[0].getElementById('alt_upper_1t');
-        let u1 = this.getElementsByTagName("svg")[0].getElementById('alt_upper_1');
-        let ct = this.getElementsByTagName("svg")[0].getElementById('alt_centert');
-        let c = this.getElementsByTagName("svg")[0].getElementById('alt_center');
-        let l1t = this.getElementsByTagName("svg")[0].getElementById('alt_lower_1t');
-        let l1 = this.getElementsByTagName("svg")[0].getElementById('alt_lower_1');
-        let l2t = this.getElementsByTagName("svg")[0].getElementById('alt_lower_2t');
-        let l2 = this.getElementsByTagName("svg")[0].getElementById('alt_lower_2');
-        let l3t = this.getElementsByTagName("svg")[0].getElementById('alt_lower_3t');
-        let l3 = this.getElementsByTagName("svg")[0].getElementById('alt_lower_3');
+        let tape = this.getLocalElementByID('altimeter_tape');
+        let u3t = this.getLocalElementByID('alt_upper_3t');
+        let u3 = this.getLocalElementByID('alt_upper_3');
+        let u2t = this.getLocalElementByID('alt_upper_2t');
+        let u2 = this.getLocalElementByID('alt_upper_2');
+        let u1t = this.getLocalElementByID('alt_upper_1t');
+        let u1 = this.getLocalElementByID('alt_upper_1');
+        let ct = this.getLocalElementByID('alt_centert');
+        let c = this.getLocalElementByID('alt_center');
+        let l1t = this.getLocalElementByID('alt_lower_1t');
+        let l1 = this.getLocalElementByID('alt_lower_1');
+        let l2t = this.getLocalElementByID('alt_lower_2t');
+        let l2 = this.getLocalElementByID('alt_lower_2');
+        let l3t = this.getLocalElementByID('alt_lower_3t');
+        let l3 = this.getLocalElementByID('alt_lower_3');
         u3t.innerHTML = Math.floor((nearest + 300) / 1000);
         u3.innerHTML = ('000' + Math.floor(nearest + 300) % 1000).substr(-3);
         u2t.innerHTML = Math.floor((nearest + 200) / 1000);
@@ -108,7 +102,7 @@ class ALTIMETER extends HTMLElement {
         l3.innerHTML = ('000' + Math.floor(nearest - 300) % 1000).substr(-3);
         tape.setAttribute("transform", "translate(0," + (distance / 100 * 60) + ")");
     
-        let qnh = this.getElementsByTagName("svg")[0].getElementById('qnh');
+        let qnh = this.getLocalElementByID('qnh');
         qnh.innerHTML = this.qnh;
     }
 

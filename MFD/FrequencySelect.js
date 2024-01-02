@@ -27,7 +27,6 @@ class MFDFrequencySelect extends OSModule {
         this.addEventListener('button', this.buttonPressed);
         this.initCompleted = false;
         this.currentInput = "";
-        this.id = "0";
         this.ident = false;
         this.knobMode = 0;
    //     new MessageBus().subscribe("id-code", this.updateIdCode.bind(this));
@@ -43,7 +42,7 @@ class MFDFrequencySelect extends OSModule {
         let btn_on = this.querySelector("#btn_on");
         let btn_alt = this.querySelector("#btn_alt");
 */
-let inputText = this.querySelector("#xpdr_id_input");
+let inputText = this.getLocalElementByID("xpdr_id_input");
 
         inputText.innerHTML = this.currentInput;
 /*

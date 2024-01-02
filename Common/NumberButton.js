@@ -21,11 +21,11 @@ import { AbstractButton } from '../../Common/AbstractButton.js';
 
 class NumberButton extends AbstractButton {
     constructor() {
-        super("./Common/NumberButton.svg", "background","url(#grad_btn)","url(#grad_btn_pressed)");
+        super("./Common/NumberButton.svg", "background","grad_btn","grad_btn_pressed");
     }
     
     hasLoaded() {
-        let c = this.getElementsByTagName("svg")[0].getElementById("label");
+        let c = this.getLocalElementByID("label");
         c.innerHTML = this.getAttribute("label");
     }
 

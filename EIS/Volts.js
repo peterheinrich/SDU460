@@ -17,16 +17,12 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
+import { OSModule } from '../tools/OSModule.js';
 import { MessageBus } from '../../tools/MessageBus.js';
 
-class VOLTS extends HTMLElement {
+class VOLTS extends OSModule {
     constructor() {
-        super();
-
-        fetch("./EIS/Volts.svg").then(t => t.text()).then(r => {
-            this.innerHTML = r;
-        });
-
+        super("./EIS/Volts.svg");
         this.volts = 0;
         new MessageBus().subscribe("volts", this.update.bind(this));
     }
@@ -39,49 +35,49 @@ class VOLTS extends HTMLElement {
     }
 
     renderUI() {
-        let c = this.getElementsByTagName("svg")[0];
+        let c = null;
         if(this.volts < 16) {
-            c = this.getElementsByTagName("svg")[0].getElementById('volts');
+            c = this.getLocalElementByID('volts');
             c.setAttribute("transform", "translate(0,0)");
-            c = this.getElementsByTagName("svg")[0].getElementById('voltsbackground');
+            c = this.getLocalElementByID('voltsbackground');
             c.setAttribute("fill", "#FF0000");
-            c = this.getElementsByTagName("svg")[0].getElementById('voltslabel');
+            c = this.getLocalElementByID('voltslabel');
             c.setAttribute("fill", "black");
-            c = this.getElementsByTagName("svg")[0].getElementById('voltsvalue');
+            c = this.getLocalElementByID('voltsvalue');
             c.setAttribute("fill", "black");
         }
         else if(this.volts >=16 && this.volts < 20) {
-            c = this.getElementsByTagName("svg")[0].getElementById('volts');
+            c = this.getLocalElementByID('volts');
             c.setAttribute("transform", "translate(0,0)");
-            c = this.getElementsByTagName("svg")[0].getElementById('voltsbackground');
+            c = this.getLocalElementByID('voltsbackground');
             c.setAttribute("fill", "#FF0000");
-            c = this.getElementsByTagName("svg")[0].getElementById('voltslabel');
+            c = this.getLocalElementByID('voltslabel');
             c.setAttribute("fill", "black");
-            c = this.getElementsByTagName("svg")[0].getElementById('voltsvalue');
+            c = this.getLocalElementByID('voltsvalue');
             c.setAttribute("fill", "black");
-            c = this.getElementsByTagName("svg")[0].getElementById('volts');
+            c = this.getLocalElementByID('volts');
             c.setAttribute("transform", "translate(" + (this.volts-16)/16.2*130 + ",0)");
        
         } else if(this.volts >=20 && this.volts < 22) {
-            c = this.getElementsByTagName("svg")[0].getElementById('voltsbackground');
+            c = this.getLocalElementByID('voltsbackground');
             c.setAttribute("fill", "#FFFF00");
-            c = this.getElementsByTagName("svg")[0].getElementById('voltslabel');
+            c = this.getLocalElementByID('voltslabel');
             c.setAttribute("fill", "black");
-            c = this.getElementsByTagName("svg")[0].getElementById('voltsvalue');
+            c = this.getLocalElementByID('voltsvalue');
             c.setAttribute("fill", "black");
-            c = this.getElementsByTagName("svg")[0].getElementById('volts');
+            c = this.getLocalElementByID('volts');
             c.setAttribute("transform", "translate(" + (this.volts-16)/16.2*130 + ",0)");
         } else {
-            c = this.getElementsByTagName("svg")[0].getElementById('voltsbackground');
+            c = this.getLocalElementByID('voltsbackground');
             c.setAttribute("fill", "black");
-            c = this.getElementsByTagName("svg")[0].getElementById('voltslabel');
+            c = this.getLocalElementByID('voltslabel');
             c.setAttribute("fill", "white");
-            c = this.getElementsByTagName("svg")[0].getElementById('voltsvalue');
+            c = this.getLocalElementByID('voltsvalue');
             c.setAttribute("fill", "white");
-            c = this.getElementsByTagName("svg")[0].getElementById('volts');
+            c = this.getLocalElementByID('volts');
             c.setAttribute("transform", "translate(" + (this.volts-16)/16.2*130 + ",0)");
         }
-        c = this.getElementsByTagName("svg")[0].getElementById('voltsvalue');
+        c = this.getLocalElementByID('voltsvalue');
         c.innerHTML = Math.round(this.volts*10)/10;
     }
 }

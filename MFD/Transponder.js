@@ -27,7 +27,7 @@ class MFDTransponder extends OSModule {
         this.addEventListener('button', this.buttonPressed);
         this.initCompleted = false;
         this.currentInput = "";
-        this.id = "0";
+        this.transponderId = "0";
         this.ident = false;
         this.knobMode = 0;
         new MessageBus().subscribe("id-code", this.updateIdCode.bind(this));
@@ -37,7 +37,7 @@ class MFDTransponder extends OSModule {
 
     updateIdCode(type, message) {
         if (type === "id-code") {
-            this.id = message;
+            this.transponderId = message;
         }
         this.updateUI();
     }
@@ -57,10 +57,10 @@ class MFDTransponder extends OSModule {
 
     updateUI() {
         if (!this.initCompleted) return;
-        let btn_stby = this.querySelector("#btn_stby");
-        let btn_on = this.querySelector("#btn_on");
-        let btn_alt = this.querySelector("#btn_alt");
-        let inputText = this.querySelector("#xpdr_id_input");
+        let btn_stby = this.getLocalElementByID("btn-stby");
+        let btn_on = this.getLocalElementByID("btn-on");
+        let btn_alt = this.getLocalElementByID("btn-alt");
+        let inputText = this.getLocalElementByID("xpdr-id-input");
 
 
         inputText.innerHTML = this.currentInput;
@@ -93,10 +93,6 @@ class MFDTransponder extends OSModule {
                 break;
         }
 
-        /*  console.log(btn_stby.getAttribute("on"));
-          console.log(btn_on.getAttribute("on"));
-          console.log(btn_alt.getAttribute("on"));*/
-
     }
 
     hasLoaded() {
@@ -106,49 +102,49 @@ class MFDTransponder extends OSModule {
     }
 
     buttonPressed(event) {
-        let id = event.target.getAttribute('id');
+        let id = this.stripLocalID(event.target.getAttribute('id'));
         switch (id) {
-            case "btn_0":
-            case "btn_1":
-            case "btn_2":
-            case "btn_3":
-            case "btn_4":
-            case "btn_5":
-            case "btn_6":
-            case "btn_7":
+            case "btn-0":
+            case "btn-1":
+            case "btn-2":
+            case "btn-3":
+            case "btn-4":
+            case "btn-5":
+            case "btn-6":
+            case "btn-7":
                 if (this.currentInput.length == 4) {
                     this.currentInput = "";
                 }
 
-                this.numberButtonInput(id.split("_")[1]);
+                this.numberButtonInput(id.split("-")[1]);
                 break;
-            case "btn_vfr":
+            case "btn-vfr":
                 this.currentInput = "7000";
                 break;
 
-            case "btn_delete":
+            case "btn-delete":
                 if (this.currentInput.length >= 1) {
                     this.currentInput = this.currentInput.slice(0, -1);
                 }
                 break;
 
-            case "btn_stby":
+            case "btn-stby":
                 FlightSimInterface.getInstance().writeProperty("instrumentation/transponder/inputs/knob-mode", 1);
                 break;
 
-            case "btn_on":
+            case "btn-on":
                 FlightSimInterface.getInstance().writeProperty("instrumentation/transponder/inputs/knob-mode", 4);
                 break;
-            case "btn_alt":
+            case "btn-alt":
                 FlightSimInterface.getInstance().writeProperty("instrumentation/transponder/inputs/knob-mode", 5);
                 break;
 
-            case "btn_back":
+            case "btn-back":
                 this.throwParentEvent();
 
                 break;
 
-            case "btn_ident":
+            case "btn-ident":
                 FlightSimInterface.getInstance().writeProperty("instrumentation/transponder/ident", true).then(
                     () => {
                         console.log("TRUE");
@@ -157,13 +153,13 @@ class MFDTransponder extends OSModule {
 
                 break;
 
-            case "btn_enter":
+            case "btn-enter":
                 FlightSimInterface.getInstance().writeProperty("instrumentation/transponder/id-code", this.currentInput);
                 this.throwParentEvent();
                 break;
 
             default:
-                console.error("Unknown button pressed!");
+                console.error("Unknown button pressed!" + id);
                 break;
         }
         this.updateUI();

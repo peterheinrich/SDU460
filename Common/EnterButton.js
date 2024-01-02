@@ -21,7 +21,7 @@ import { AbstractButton } from '../../Common/AbstractButton.js';
 
 class EnterButton extends AbstractButton {
     constructor() {
-        super("./Common/EnterButton.svg", "background","url(#grad_btn)","url(#grad_btn_pressed)");
+        super("./Common/EnterButton.svg", "background","grad_btn","grad_btn_pressed");
     }
 }
 customElements.define("common-enterbutton", EnterButton);
