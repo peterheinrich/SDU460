@@ -27,6 +27,7 @@ export class FlightGear {
         if(FlightGear._instance) {
             return FlightGear._instance;
         }
+        this.host = "localhost:8080"
         FlightGear._instance = this;
         this.hasConnection = false;
     }
@@ -39,7 +40,7 @@ export class FlightGear {
             }));
         }
 
-        var ws = new WebSocket('ws://localhost:8080/PropertyListener')
+        var ws = new WebSocket('ws://'+this.host+'/PropertyListener')
         var properties = [
             'instrumentation/altimeter/indicated-altitude-ft',
             'instrumentation/attitude-indicator/indicated-pitch-deg',
@@ -113,7 +114,7 @@ export class FlightGear {
             }
             properties.forEach(element => {
                 if(!FlightSimInterface.getInstance().hasConnection) return;
-                fetch("http://localhost:8080/json/" + element).then((response) => {
+                fetch("http://"+this.host+"/json/" + element).then((response) => {
                     return response.json();
                 }).then((data) => {
                     new MessageBus().publish(element.split("/")[element.split("/").length - 1], data.value);
@@ -124,13 +125,13 @@ export class FlightGear {
     }
 
     async readProperty(path) {
-        return fetch("http://localhost:8080/json/" + path).then((response) => {
+        return fetch("http://"+this.host+"/json/" + path).then((response) => {
             return response.json();
         });
     };
 
     async writeProperty(path, val) {
-        fetch("http://localhost:8080/json/" + path, { method: "POST", body: JSON.stringify({ value: val }) }).then((data) => {
+        fetch("http://"+this.host+"/json/" + path, { method: "POST", body: JSON.stringify({ value: val }) }).then((data) => {
         });
     };
 }
