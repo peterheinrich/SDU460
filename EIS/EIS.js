@@ -17,17 +17,15 @@
  * You should have received a copy of the GNU General Public License 
  * along with Foobar. If not, see <https://www.gnu.org/licenses/>.
  */
-import { AbstractButton } from '../../Common/AbstractButton.js';
 
-class NumberButton extends AbstractButton {
-    constructor() {
-        super("./Common/NumberButton.svg", "background","url(#grad_btn)","url(#grad_btn_pressed)");
-    }
+import { OSModule } from '../tools/OSModule.js';
+
+class EIS extends OSModule {
     
-    hasLoaded() {
-        let c = this.getElementsByTagName("svg")[0].getElementById("label");
-        c.innerHTML = this.getAttribute("label");
+    constructor() {
+        super("./EIS/EIS.html")
     }
 
 }
-customElements.define("common-numberbutton", NumberButton);
+
+customElements.define("sdu460-eis", EIS);

@@ -23,6 +23,7 @@ class SDU460 extends HTMLElement {
         super();
         this.splitScreen = false;
         this.transponderDialog = false;
+        this.frequencyDialog = false;
         fetch("./SDU460.html").then(r => r.text()).then(t => {
             this.innerHTML = t;
         });
@@ -52,8 +53,14 @@ class SDU460 extends HTMLElement {
                 document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
             }
         }
-        else if (event.target.getAttribute('id') === "btnCom1") {
-            FlightGearInterface.com1SwapFrequencies();
+        else if (event.target.getAttribute('id') === "btnCom1Stby") {
+            this.frequencyDialog = !this.frequencyDialog;
+            if (this.frequencyDialog) {
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "frequency");
+            }
+            else {
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
+            }
         }
         else if (event.target.getAttribute('id') === "xpdr") {
             this.transponderDialog = !this.transponderDialog;

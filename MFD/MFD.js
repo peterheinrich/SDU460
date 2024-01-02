@@ -51,12 +51,21 @@ export class MFD extends OSModule {
         if (!this.initCompleted) return;
         if (this.overlay == null || this.overlay === "") {
             this.getElementsByTagName("mfd-transponder")[0].setAttribute("style", "display: none; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
+            this.getElementsByTagName("mfd-frequencyselect")[0].setAttribute("style", "display: none; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
         }
         else if (this.overlay === "transponder") {
             this.getElementsByTagName("mfd-map")[0].setAttribute("style", "display: none; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
+            this.getElementsByTagName("mfd-frequencyselect")[0].setAttribute("style", "display: none; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
             this.getElementsByTagName("mfd-transponder")[0].setAttribute("style", "position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
             return;
         }
+        else if (this.overlay === "frequency") {
+            this.getElementsByTagName("mfd-map")[0].setAttribute("style", "display: none; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
+            this.getElementsByTagName("mfd-frequencyselect")[0].setAttribute("style", "position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
+            this.getElementsByTagName("mfd-transponder")[0].setAttribute("style", "display: none; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
+            return;
+        }
+
         switch (this.currentPage) {
             case "map":
                 this.getElementsByTagName("mfd-map")[0].setAttribute("style", "position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
