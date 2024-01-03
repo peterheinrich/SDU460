@@ -27,7 +27,6 @@ export class FlightGear {
         if(FlightGear._instance) {
             return FlightGear._instance;
         }
-        this.host = "localhost:8080"
         FlightGear._instance = this;
         this.hasConnection = false;
     }
@@ -40,8 +39,8 @@ export class FlightGear {
             }));
         }
 
-        var ws = new WebSocket('ws://'+this.host+'/PropertyListener')
-        var properties = [
+        var ws = new WebSocket('ws://localhost:8080/PropertyListener')
+        var stream_properties = [
             'instrumentation/altimeter/indicated-altitude-ft',
             'instrumentation/attitude-indicator/indicated-pitch-deg',
             'instrumentation/attitude-indicator/indicated-roll-deg',
@@ -53,10 +52,12 @@ export class FlightGear {
             'instrumentation/gps/indicated-track-true-deg',
             'instrumentation/vertical-speed-indicator/indicated-speed-fpm',
             'instrumentation/heading-indicator/indicated-heading-deg',
+            'engines/engine/rpm',
+        ];
+        var poll_properties = [
             'instrumentation/transponder/id-code',
             'instrumentation/transponder/ident',
             'instrumentation/transponder/inputs/knob-mode',
-            'engines/engine/rpm',
             'engines/engine/egt-degf',
             'engines/engine/cht-degf',
             'engines/engine/fuel-flow-gph',
@@ -72,8 +73,15 @@ export class FlightGear {
             'instrumentation/comm/frequencies/selected-mhz-fmt',
             'instrumentation/comm/frequencies/standby-mhz-fmt'
         ];
+        var high_speed_poll_properties = [
+            'sim/time/gmt-string',
+        ];
+
         ws.onopen = function (ev) {
-            properties.forEach(element => {
+            stream_properties.forEach(element => {
+                attach(ws, element);
+            });
+            poll_properties.forEach(element => {
                 attach(ws, element);
             });
             FlightSimInterface.getInstance().hasConnection = true;
@@ -108,30 +116,32 @@ export class FlightGear {
         }
 
         /* read all parameters initially from sim */
-        var rereadAll = function () {
+        var rereadAll = function (propertiesList) {
             if(!FlightSimInterface.getInstance().hasConnection) {
                 return;
             }
-            properties.forEach(element => {
+            propertiesList.forEach(element => {
                 if(!FlightSimInterface.getInstance().hasConnection) return;
-                fetch("http://"+this.host+"/json/" + element).then((response) => {
+                fetch("http://localhost:8080/json/" + element).then((response) => {
                     return response.json();
                 }).then((data) => {
                     new MessageBus().publish(element.split("/")[element.split("/").length - 1], data.value);
                 });
             });
         }
-        setInterval(rereadAll, 1000);
+        setInterval(() => rereadAll(poll_properties), 1000);
+        setInterval(() => rereadAll(high_speed_poll_properties), 100);
+
     }
 
     async readProperty(path) {
-        return fetch("http://"+this.host+"/json/" + path).then((response) => {
+        return fetch("http://localhost:8080/json/" + path).then((response) => {
             return response.json();
         });
     };
 
     async writeProperty(path, val) {
-        fetch("http://"+this.host+"/json/" + path, { method: "POST", body: JSON.stringify({ value: val }) }).then((data) => {
+        fetch("http://localhost:8080/json/" + path, { method: "POST", body: JSON.stringify({ value: val }) }).then((data) => {
         });
     };
 }

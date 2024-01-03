@@ -1,4 +1,5 @@
 # SDU460
+This project aims as replicating the G3X Touch from Garmin for the purpose of desktop flight simulation. This project is *not* associated with Garmin and does *not* use any resources (sourcecode or artwork) of the original product.  
 ## Primary flight display instruments
 <img src="./PFD/ASI.svg" height="200px"/>
 <img src="./PFD/ADI.svg" height="200px"/>
