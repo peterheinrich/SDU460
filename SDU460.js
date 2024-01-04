@@ -61,6 +61,9 @@ class SDU460 extends OSModule {
             else {
                 document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
             }
+        } 
+        else if (eventId == "btnCom1") {
+            FlightSimInterface.getInstance().swapCOM1Frequencies();
         }
         else if (eventId === "xpdr") {
             this.transponderDialog = !this.transponderDialog;

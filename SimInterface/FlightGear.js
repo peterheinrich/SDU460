@@ -24,7 +24,7 @@ export class FlightGear {
 
     /* Singleton pattern for FlightGearInterface */
     constructor() {
-        if(FlightGear._instance) {
+        if (FlightGear._instance) {
             return FlightGear._instance;
         }
         FlightGear._instance = this;
@@ -117,11 +117,11 @@ export class FlightGear {
 
         /* read all parameters initially from sim */
         var rereadAll = function (propertiesList) {
-            if(!FlightSimInterface.getInstance().hasConnection) {
+            if (!FlightSimInterface.getInstance().hasConnection) {
                 return;
             }
             propertiesList.forEach(element => {
-                if(!FlightSimInterface.getInstance().hasConnection) return;
+                if (!FlightSimInterface.getInstance().hasConnection) return;
                 fetch("http://localhost:8080/json/" + element).then((response) => {
                     return response.json();
                 }).then((data) => {
@@ -131,7 +131,7 @@ export class FlightGear {
         }
         setInterval(() => rereadAll(poll_properties), 1000);
         setInterval(() => rereadAll(high_speed_poll_properties), 100);
-
+        rereadAll(stream_properties);
     }
 
     async readProperty(path) {
@@ -144,4 +144,32 @@ export class FlightGear {
         fetch("http://localhost:8080/json/" + path, { method: "POST", body: JSON.stringify({ value: val }) }).then((data) => {
         });
     };
+
+
+    setCOM1StbyFrequency(value) {
+        value = value.replace(".", "");
+        if (value.length == 3) value = value + "000";
+        if (value.length == 4) value = value + "00";
+        if (value.length == 5) value = value + "0";
+        let channel = Math.round((value - 118000) / 6.25);
+        this.writeProperty("instrumentation/comm/frequencies/standby-channel-width-khz", "8.33").then(() => {
+            this.writeProperty("instrumentation/comm/frequencies/standby-channel", channel);
+        })
+
+    }
+
+    swapCOM1Frequencies() {
+        debugger;
+        this.readProperty("instrumentation/comm/frequencies/selected-channel").then((selected) => {
+            this.readProperty("instrumentation/comm/frequencies/standby-channel").then((standby) => {
+                this.writeProperty("instrumentation/comm/frequencies/standby-channel-width-khz", "8.33").then(() => {
+                    this.writeProperty("instrumentation/comm/frequencies/selected-channel-width-khz", "8.33").then(() => {
+                        this.writeProperty("instrumentation/comm/frequencies/selected-channel", standby.value);
+                        this.writeProperty("instrumentation/comm/frequencies/standby-channel", selected.value);
+                    });
+                });
+            });
+        });
+    }
+
 }

@@ -29,124 +29,62 @@ class MFDFrequencySelect extends OSModule {
         this.currentInput = "";
         this.ident = false;
         this.knobMode = 0;
-   //     new MessageBus().subscribe("id-code", this.updateIdCode.bind(this));
-   //     new MessageBus().subscribe("ident", this.updateIdent.bind(this));
-   //     new MessageBus().subscribe("knob-mode", this.updateKnobMode.bind(this));
-    }
-
-    updateUI() {
-      if (!this.initCompleted) return;
-    /*    let btn_stby = this.querySelector("#btn_stby");
-        let btn_on = this.querySelector("#btn_on");
-        let btn_alt = this.querySelector("#btn_alt");
-*/
-let inputText = this.getLocalElementByID("xpdr_id_input");
-
-        inputText.innerHTML = this.currentInput;
-/*
-        switch (this.knobMode) {
-            case 0:
-                btn_stby.setAttribute("on", "false");
-                btn_on.setAttribute("on", "false");
-                btn_alt.setAttribute("on", "false");
-                break;
-            case 1:
-                btn_stby.setAttribute("on", "true");
-                btn_on.setAttribute("on", "false");
-                btn_alt.setAttribute("on", "false");
-                break;
-            case 4:
-                btn_stby.setAttribute("on", "false");
-                btn_on.setAttribute("on", "true");
-                btn_alt.setAttribute("on", "false");
-                break;
-            case 5:
-                btn_stby.setAttribute("on", "false");
-                btn_on.setAttribute("on", "false");
-                btn_alt.setAttribute("on", "true");
-                break;
-            default:
-                btn_stby.setAttribute("on", "false");
-                btn_on.setAttribute("on", "false");
-                btn_alt.setAttribute("on", "false");
-                break;
-        }
-*/
-        /*  console.log(btn_stby.getAttribute("on"));
-          console.log(btn_on.getAttribute("on"));
-          console.log(btn_alt.getAttribute("on"));*/
-
     }
 
     hasLoaded() {
-        //  FlightSimInterface.readProperty("")
         this.initCompleted = true;
-        this.updateUI();
+    }
+
+    updateUI() {
+        if (!this.initCompleted) return;
+        let inputText = this.getLocalElementByID("frequency-input");
+        inputText.innerHTML = this.currentInput;
     }
 
     buttonPressed(event) {
-        let id = event.target.getAttribute('id');
+        let id = this.stripLocalID(event.target.getAttribute('id'));
         switch (id) {
-            case "btn_0":
-            case "btn_1":
-            case "btn_2":
-            case "btn_3":
-            case "btn_4":
-            case "btn_5":
-            case "btn_6":
-            case "btn_7":
-            case "btn_8":
-            case "btn_9":
+            case "btn-0":
+            case "btn-1":
+            case "btn-2":
+            case "btn-3":
+            case "btn-4":
+            case "btn-5":
+            case "btn-6":
+            case "btn-7":
+            case "btn-8":
+            case "btn-9":
                 if (this.currentInput.length == 3) {
                     this.currentInput += ".";
                 }
                 else if (this.currentInput.length == 7) {
                     this.currentInput = "";
                 }
-                this.numberButtonInput(id.split("_")[1]);
+                this.numberButtonInput(id.split("-")[1]);
                 break;
-            case "btn_vfr":
-                this.currentInput = "7000";
-                break;
-
-            case "btn_delete":
+            case "btn-delete":
                 if (this.currentInput.length >= 1) {
                     this.currentInput = this.currentInput.slice(0, -1);
                 }
                 break;
-
-            case "btn_stby":
-            //    FlightSimInterface.getInstance().writeProperty("instrumentation/transponder/inputs/knob-mode", 1);
-                break;
-
-            case "btn_on":
-            //    FlightSimInterface.getInstance().writeProperty("instrumentation/transponder/inputs/knob-mode", 4);
-                break;
-            case "btn_alt":
-            //    FlightSimInterface.getInstance().writeProperty("instrumentation/transponder/inputs/knob-mode", 5);
-                break;
-
-            case "btn_back":
+            case "btn-back":
                 this.throwParentEvent();
-
                 break;
-
-            case "btn_ident":
-                /* FlightSimInterface.getInstance().writeProperty("instrumentation/transponder/ident", true).then(
-                     () => {
-                         console.log("TRUE");
-                     }
-                 );
- */
-                break;
-
-            case "btn_enter":
-                //              FlightSimInterface.getInstance().writeProperty("instrumentation/transponder/id-code", this.currentInput);
+            case "btn-enter":
+                FlightSimInterface.getInstance().setCOM1StbyFrequency(this.currentInput);
                 this.throwParentEvent();
                 break;
 
+            // Currently unimplemented
+            case "btn-find":
+                break;
+
+            case "btn-squelch":
+                break;
+            case "btn-monitor":
+                break;
             default:
-                console.error("Unknown button pressed!");
+                console.error("Unknown button pressed!" + id);
                 break;
         }
         this.updateUI();
@@ -163,8 +101,5 @@ let inputText = this.getLocalElementByID("xpdr_id_input");
     numberButtonInput(value) {
         this.currentInput = this.currentInput + value;
     }
-
-
-
 }
 customElements.define("mfd-frequencyselect", MFDFrequencySelect);
