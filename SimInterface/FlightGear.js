@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023, Peter Heinrich <peter@open-simulations.ch>
+ * Copyright (C) 2024, Peter Heinrich <peter@open-simulations.ch>
  * 
  * This file is part of OS3X-Touch, a visual look alike of a well
  * known avionics system for use in desktop flight simulators.
@@ -145,7 +145,6 @@ export class FlightGear {
         });
     };
 
-
     setCOM1StbyFrequency(value) {
         value = value.replace(".", "");
         if (value.length == 3) value = value + "000";
@@ -155,7 +154,6 @@ export class FlightGear {
         this.writeProperty("instrumentation/comm/frequencies/standby-channel-width-khz", "8.33").then(() => {
             this.writeProperty("instrumentation/comm/frequencies/standby-channel", channel);
         })
-
     }
 
     swapCOM1Frequencies() {

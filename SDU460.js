@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023, Peter Heinrich <peter@open-simulations.ch>
+ * Copyright (C) 2024, Peter Heinrich <peter@open-simulations.ch>
  * 
  * This file is part of OS3X-Touch, a visual look alike of a well
  * known avionics system for use in desktop flight simulators.
