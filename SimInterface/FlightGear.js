@@ -145,6 +145,12 @@ export class FlightGear {
         });
     };
 
+    async readStbyFrequency() {
+        return this.readProperty("instrumentation/comm/frequencies/standby-mhz-fmt").then((data) => {
+            return data.value;
+        });
+    }
+    
     setCOM1StbyFrequency(value) {
         value = value.replace(".", "");
         if (value.length == 3) value = value + "000";

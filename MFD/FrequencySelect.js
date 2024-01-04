@@ -22,6 +22,8 @@ import { OSModule } from '../../tools/OSModule.js';
 import { FlightSimInterface } from '../../SimInterface/FlightSimInterface.js';
 
 class MFDFrequencySelect extends OSModule {
+    static observedAttributes = ["style"];
+
     constructor() {
         super("./MFD/FrequencySelect.html");
         this.addEventListener('button', this.buttonPressed);
@@ -33,6 +35,13 @@ class MFDFrequencySelect extends OSModule {
 
     hasLoaded() {
         this.initCompleted = true;
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        let inputText = this.getLocalElementByID("frequency-input");
+        FlightSimInterface.getInstance().readStbyFrequency().then((val)=> {
+            inputText.innerHTML = val;
+        });
     }
 
     updateUI() {
