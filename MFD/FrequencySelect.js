@@ -34,8 +34,6 @@ class MFDFrequencySelect extends OSModule {
    //     new MessageBus().subscribe("knob-mode", this.updateKnobMode.bind(this));
     }
 
-    
-
     updateUI() {
       if (!this.initCompleted) return;
     /*    let btn_stby = this.querySelector("#btn_stby");
