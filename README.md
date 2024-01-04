@@ -1,5 +1,5 @@
 # SDU460
-This project aims as replicating a well-known touch-based flight instrument for the purpose of desktop flight simulation. In particular it is designed as a standalone 'instrument' to be run on a RaspberryPI in combination with a touch-based monitor alongside the normal flight simulation PC. Currently the open-source flight simulator FlightGear is supported as data source.
+This project aims at replicating a well-known touch-based flight instrument for the purpose of desktop flight simulation. In particular it is designed as a standalone 'instrument' to be run on a RaspberryPI in combination with a touch-based monitor alongside the normal flight simulation PC. Currently the open-source flight simulator FlightGear is supported as data source.
 
 As for the name ... the original screen has a similar number and belongs to the well-known G3X Touch family of devices found in many experimental as well as certified aircrafts. 
 
