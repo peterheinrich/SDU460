@@ -71,7 +71,8 @@ export class FlightGear {
             'consumables/fuel/tank/indicated-level-gal_us',
             'consumables/fuel/tank[1]/indicated-level-gal_us',
             'instrumentation/comm/frequencies/selected-mhz-fmt',
-            'instrumentation/comm/frequencies/standby-mhz-fmt'
+            'instrumentation/comm/frequencies/standby-mhz-fmt',
+            'autopilot/settings/heading-bug-deg', 
         ];
         var high_speed_poll_properties = [
             'sim/time/gmt-string',

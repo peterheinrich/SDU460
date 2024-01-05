@@ -109,6 +109,16 @@
             <text id="comp_24" x="-81.4" y="47" fill="white" font-weight="bold" font-size="24" text-anchor="middle" dominant-baseline="central">24</text>
             <text id="comp_30" x="-81.4" y="-47" fill="white" font-weight="bold" font-size="24" text-anchor="middle" dominant-baseline="central">30</text>
             <text id="comp_33" x="-47" y="-81.4" fill="white" font-weight="bold" font-size="24" text-anchor="middle" dominant-baseline="central">33</text>
+
+            <!-- Heading Bug -->
+            <g id="hdg-bug">
+                <path d="M0,-135 l-13,0 l0,-13 l5,0 l8,8 l8,-8 l5,0 l0,13 l-13,0" stroke="black" fill="#00F0F0"></path>
+            </g>
+
+            <g id="compass-trk-needle">
+                <path d="M-2,115 L-2,-115 L-14,-109 L0,-135 L12,-109 L2,-115 L2,115 L-2,115" stroke="#503030" fill="#F000F0">
+                </path>
+            </g>
         </g>
         <use href="#compass_line_outer" transform="rotate(45,0,0)"></use>
         <use href="#compass_line_outer" transform="rotate(90,0,0)"></use>
@@ -123,14 +133,8 @@
         <use href="#compass_line_outer_thin" transform="rotate(10,0,0)"></use>
         <use href="#compass_line_outer_thin" transform="rotate(-10,0,0)"></use>
 
-        <g id="compass_course">
-            <path d="M-2,115 L-2,-115 L-14,-109 L0,-135 L12,-109 L2,-115 L2,115 L-2,115" stroke="#503030" fill="#F000F0">
-            </path>
-        </g>
-        <!-- Heading Bug -->
-        <g id="hdg_bug">
-            <path d="M0,-135 l-13,0 l0,-13 l5,0 l8,8 l8,-8 l5,0 l0,13 l-13,0" stroke="black" fill="#00F0F0"></path>
-        </g>
+       
+
 
         <!-- Track -->
         <g>
@@ -152,7 +156,7 @@
         <g transform="translate(120,10)">
             <rect x="-52" y="-180" width="86" height="29" rx="8" fill="black" opacity="0.7"></rect>
             <text x="-45" y="-164" font-size="12" fill="white" font-weight="bold" alignment-baseline="middle">CRS</text>
-            <text id="crs-text" x="5" y="-164" font-size="20" fill="#F000F0" font-weight="bold" text-anchor="middle" alignment-baseline="middle">200°</text>
+            <text id="crs-text" x="5" y="-164" font-size="20" fill="#F000F0" font-weight="bold" text-anchor="middle" alignment-baseline="middle">---°</text>
         </g>
     </g>
 </svg>

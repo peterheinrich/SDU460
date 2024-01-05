@@ -25,17 +25,27 @@ class CDICOMPASS extends OSModule {
         super("./PFD/CDICompass.svg");
 
         this.heading = 0;
+        this.headingbug = 0;
         this.track = 0;
 
         new MessageBus().subscribe("indicated-heading-deg", this.update.bind(this));
         new MessageBus().subscribe("indicated-track-true-deg", this.updateTrack.bind(this));
+        new MessageBus().subscribe("heading-bug-deg", this.updateHdgBug.bind(this));
     }
 
     update(type, message) {
         if (type === "indicated-heading-deg") {
             this.heading = message;
         }
+
         this.renderUI();
+    }
+
+    updateHdgBug(type, message) {
+        if (type === "heading-bug-deg") {
+            this.headingbug = message;
+        }
+        this.renderHdgBug();
     }
 
     updateTrack(type, message) {
@@ -47,12 +57,34 @@ class CDICOMPASS extends OSModule {
 
     renderTrack() {
         let c = this.getLocalElementByID('trk-text');
-        c.innerHTML = this.track + "°";
+        c.innerHTML = this.getDegreeString(this.track);
+        c = this.getLocalElementByID('compass-trk-needle');
+        c.setAttribute("transform", "rotate(" + (this.track) + ",0,0)");
+
+    }
+
+    renderHdgBug() {
+        let c = this.getLocalElementByID('hdg-text');
+        c.innerHTML = this.getDegreeString(this.headingbug);
+        c = this.getLocalElementByID('hdg-bug');
+        c.setAttribute("transform", "rotate(" + (this.headingbug) + ",0,0)");
+    }
+
+    getDegreeString(val) {
+        if (val < 10) {
+            return "00" + Math.round(val) + "°";
+        }
+        else if (val < 100) {
+            return "0" + Math.round(val) + "°";
+        }
+        else {
+            return Math.round(val) + "°";
+        }
     }
 
     renderUI() {
         let c = this.getLocalElementByID('compass');
-        c.setAttribute("transform", "rotate(" + (-1)*this.heading + ",0,0)");
+        c.setAttribute("transform", "rotate(" + (-1) * this.heading + ",0,0)");
         c = this.getLocalElementByID('comp_N');
         c.setAttribute("transform", "rotate(" + this.heading + ",0,-94)");
         c = this.getLocalElementByID('comp_E');
@@ -78,7 +110,11 @@ class CDICOMPASS extends OSModule {
         c.setAttribute("transform", "rotate(" + this.heading + ",-81.4,-47)");
         c = this.getLocalElementByID('comp_33');
         c.setAttribute("transform", "rotate(" + this.heading + ",-47,-81.4)");
-        
+
+
+
+
+
     }
 }
 
