@@ -3,10 +3,8 @@ This project aims at replicating a well-known touch-based flight instrument for 
 
 <img src="./Documentation/SplitScreen.png" width="800"></img>
 
-As for the name ... the original screen has a similar number and belongs to the well-known G3X Touch family of devices found in many experimental as well as certified aircrafts. 
-
 ## Background and current status
-First and foremost, this project is one hobbyist's endeavor for the joy of flying at home. It is *not* associated with Garmin (or any other manufacturer) in any way and does *not* use any resources (source code or artwork) of any real existing original product. Instead, everything is written from scratch, based on pure web standards and ES6 JavaScript. This software works without any 3rd party library apart from leaflet and leaflet-rotate for map display. Feel free to either use npm to install these dependencies or do it manually. 
+First and foremost, this project is one hobbyist's endeavor for the joy of flying at home. It is *not* associated with any avionics manufacturer in any way and does *not* use any resources (source code or preexisting artwork). Instead, everything is written from scratch, based on pure web standards and ES6 JavaScript. This software works without any 3rd party library apart from leaflet and leaflet-rotate for map display. Feel free to either use npm to install these dependencies or do it manually. 
 
 As moving map, any maps in tiles format can be used. For current testing purposes, I opted for openflightmaps due to their availability in many regions.
 
@@ -24,3 +22,16 @@ Plans for further development (hardware):
 Plans for further development (software):
 - OBS display and VOR functionality.
 - CDI with flight plan upload
+
+## Installation and running
+If you have nodejs installed, this the following command from the project's root directory:
+$ npm -i
+
+Further, download and extract the correct tiles for your area. Mine is Switzerland so I can just run the following command:
+$ ./download3rdParty.sh
+
+But please replace the content of openflightmaps/ with the tiles of your choice.
+
+Finally, run FlightGear with the --http=8080 option. Currently the websocket/REST endpoint is hardcoded to localhost:8080 in the file SimInterface/FlightGear.js
+
+You can change this according to your needs.
