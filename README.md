@@ -25,9 +25,11 @@ Plans for further development (software):
 
 ## Installation and running
 If you have nodejs installed, this the following command from the project's root directory:
+
 $ npm -i
 
 Further, download and extract the correct tiles for your area. Mine is Switzerland so I can just run the following command:
+
 $ ./download3rdParty.sh
 
 But please replace the content of openflightmaps/ with the tiles of your choice.
