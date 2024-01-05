@@ -27,10 +27,17 @@ class CDICOMPASS extends OSModule {
         this.heading = 0;
         this.headingbug = 0;
         this.track = 0;
+        this.initCompleted = false;
+
 
         new MessageBus().subscribe("indicated-heading-deg", this.update.bind(this));
         new MessageBus().subscribe("indicated-track-true-deg", this.updateTrack.bind(this));
         new MessageBus().subscribe("heading-bug-deg", this.updateHdgBug.bind(this));
+    }
+
+
+    hasLoaded() {
+        this.initCompleted = true;
     }
 
     update(type, message) {
@@ -56,6 +63,7 @@ class CDICOMPASS extends OSModule {
     }
 
     renderTrack() {
+        if(!this.initCompleted) return;
         let c = this.getLocalElementByID('trk-text');
         c.innerHTML = this.getDegreeString(this.track);
         c = this.getLocalElementByID('compass-trk-needle');
@@ -64,6 +72,7 @@ class CDICOMPASS extends OSModule {
     }
 
     renderHdgBug() {
+        if(!this.initCompleted) return;
         let c = this.getLocalElementByID('hdg-text');
         c.innerHTML = this.getDegreeString(this.headingbug);
         c = this.getLocalElementByID('hdg-bug');
@@ -83,6 +92,7 @@ class CDICOMPASS extends OSModule {
     }
 
     renderUI() {
+        if(!this.initCompleted) return;
         let c = this.getLocalElementByID('compass');
         c.setAttribute("transform", "rotate(" + (-1) * this.heading + ",0,0)");
         c = this.getLocalElementByID('comp_N');

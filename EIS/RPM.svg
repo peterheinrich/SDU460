@@ -10,6 +10,6 @@
             <path d=" M -6,0 L-1,-60 L1,-60 L6,0" transform="rotate(-145,0,0)" stroke="black" fill="white"></path>
         </g>
         <text x="63" y="24" fill="white" font-weight="bold" font-size="14" text-anchor="end">RPM</text>
-        <text id="rpmvalue" x="63" y="45" fill="white" font-weight="bold" font-size="24" text-anchor="end">2900</text>
+        <text id="rpmvalue" x="63" y="45" fill="white" font-weight="bold" font-size="24" text-anchor="end">0</text>
     </g>
 </svg>

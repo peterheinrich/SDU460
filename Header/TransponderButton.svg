@@ -11,7 +11,7 @@
     <g>
         <rect x="2" y="2" width="123" height="55" stroke="black" fill="url(#grad_btn)" stroke-width="2" ry="5" rx="5"></rect>
         <text x="65" y="15" font-size="14" font-weight="bold" fill="white" text-anchor="middle" alignment-baseline="central">XPDR</text>
-        <text id="squak" x="10" y="40" font-size="26" font-weight="bold" fill="#00CC00" text-anchor="left" alignment-baseline="central">7000</text>
+        <text id="squak" x="10" y="40" font-size="26" font-weight="bold" fill="#00CC00" text-anchor="left" alignment-baseline="central">----</text>
         <text id="mode" x="80" y="40" font-size="16" font-weight="bold" fill="#00CC00" text-anchor="left" alignment-baseline="central">GND</text>
     </g>
     <g>

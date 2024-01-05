@@ -11,6 +11,6 @@
     <g>
         <rect x="2" y="2" width="112" height="55" stroke="black" fill="url(#grad_btn)" stroke-width="2" ry="5" rx="5"></rect>
         <text id="label" x="60" y="11" font-size="14" font-weight="bold" fill="white" text-anchor="middle" alignment-baseline="central">COM 1</text>
-        <text id="frequency" x="60" y="29" font-size="28" font-weight="bold" fill="#00CC00" text-anchor="middle" alignment-baseline="central">134.830</text>
+        <text id="frequency" x="60" y="29" font-size="28" font-weight="bold" fill="#00CC00" text-anchor="middle" alignment-baseline="central">---.---</text>
     </g>
 </svg>
