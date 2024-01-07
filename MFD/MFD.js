@@ -59,9 +59,17 @@ export class MFD extends OSModule {
             this.getLocalElementByID("transponder").setAttribute("style", "position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
             return;
         }
-        else if (this.overlay === "frequency") {
+        else if (this.overlay === "frequencyCOM1") {
             this.getLocalElementByID("map").setAttribute("style", "display: none; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
             this.getLocalElementByID("frequencyselect").setAttribute("style", "position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
+            this.getLocalElementByID("frequencyselect").setAttribute("receiver", "COM1");
+            this.getLocalElementByID("transponder").setAttribute("style", "display: none; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
+            return;
+        }
+        else if (this.overlay === "frequencyNAV1") {
+            this.getLocalElementByID("map").setAttribute("style", "display: none; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
+            this.getLocalElementByID("frequencyselect").setAttribute("style", "position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
+            this.getLocalElementByID("frequencyselect").setAttribute("receiver", "NAV1");
             this.getLocalElementByID("transponder").setAttribute("style", "display: none; position:absolute; top: 65px; left: 730px; width: 550px; height: 700px;")
             return;
         }

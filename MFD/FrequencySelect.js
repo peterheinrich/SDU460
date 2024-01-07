@@ -38,10 +38,18 @@ class MFDFrequencySelect extends OSModule {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
+        if(!this.initCompleted) return;
         let inputText = this.getLocalElementByID("frequency-input");
-        FlightSimInterface.getInstance().readStbyFrequency().then((val)=> {
-            inputText.innerHTML = val;
-        });
+        if (this.getAttribute("receiver") === "COM1") {
+            FlightSimInterface.getInstance().readStbyFrequency().then((val) => {
+                inputText.innerHTML = val;
+            });
+        }
+        else if (this.getAttribute("receiver") === "NAV1") {
+            FlightSimInterface.getInstance().readStbyNavFrequency().then((val) => {
+                inputText.innerHTML = val;
+            });
+        }
     }
 
     updateUI() {
@@ -80,7 +88,12 @@ class MFDFrequencySelect extends OSModule {
                 this.throwParentEvent();
                 break;
             case "btn-enter":
-                FlightSimInterface.getInstance().setCOM1StbyFrequency(this.currentInput);
+                if (this.getAttribute("receiver") === "COM1") {
+                    FlightSimInterface.getInstance().setCOM1StbyFrequency(this.currentInput);
+                }
+                else if (this.getAttribute("receiver") === "NAV1") {
+                    FlightSimInterface.getInstance().setNAV1StbyFrequency(this.currentInput);
+                }
                 this.throwParentEvent();
                 break;
 

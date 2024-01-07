@@ -28,11 +28,19 @@ class CDICOMPASS extends OSModule {
         this.headingbug = 0;
         this.track = 0;
         this.initCompleted = false;
+        this.toflag = false;
+        this.fromflag = false;
+        this.needledeflection = 0.0;
+        this.vorbearing = 0.0;
 
 
         new MessageBus().subscribe("indicated-heading-deg", this.update.bind(this));
         new MessageBus().subscribe("indicated-track-true-deg", this.updateTrack.bind(this));
         new MessageBus().subscribe("heading-bug-deg", this.updateHdgBug.bind(this));
+        new MessageBus().subscribe("from-flag", this.updateVOR.bind(this));
+        new MessageBus().subscribe("to-flag", this.updateVOR.bind(this));
+        new MessageBus().subscribe("filtered-cdiNAV0-deflection", this.updateVORNeedle.bind(this));
+        new MessageBus().subscribe("selected-deg", this.updateVORNeedle.bind(this));
     }
 
 
@@ -54,6 +62,27 @@ class CDICOMPASS extends OSModule {
         }
         this.renderHdgBug();
     }
+    updateVOR(type, message) {
+        if (type === "to-flag") {
+            this.toflag = message;
+        }
+        else if (type === "from-flag") {
+            this.fromflag = message;
+        }
+        
+        this.renderVORFlags();
+    }
+
+    updateVORNeedle(type, message) {
+        if (type === "filtered-cdiNAV0-deflection") {
+            this.needledeflection = Math.round(message * 10) / 10;
+        }
+        else if (type === "selected-deg") {
+            this.vorbearing = Math.round(message * 10) / 10;
+        }
+ 
+        this.renderVORFNeedle();
+    }
 
     updateTrack(type, message) {
         if (type === "indicated-track-true-deg") {
@@ -62,8 +91,25 @@ class CDICOMPASS extends OSModule {
         this.renderTrack();
     }
 
+    renderVORFlags() {
+        let c = this.getLocalElementByID('vor-to');
+        c.setAttribute("style", this.toflag ? "" : "display:none");
+        c = this.getLocalElementByID('vor-from');
+        c.setAttribute("style", this.fromflag ? "" : "display:none");
+    }
+
+    renderVORFNeedle() {
+        let c = this.getLocalElementByID('needle');
+        c.setAttribute("x1", this.needledeflection / 10 * 60);
+        c.setAttribute("x2", this.needledeflection / 10 * 60);
+        c = this.getLocalElementByID('vor-obs');
+        c.setAttribute("transform", "rotate(" + (this.vorbearing) + ",0,0)");
+        c = this.getLocalElementByID('crs-text');
+        c.innerHTML = this.getDegreeString(this.vorbearing);
+    }
+
     renderTrack() {
-        if(!this.initCompleted) return;
+        if (!this.initCompleted) return;
         let c = this.getLocalElementByID('trk-text');
         c.innerHTML = this.getDegreeString(this.track);
         c = this.getLocalElementByID('compass-trk-needle');
@@ -72,7 +118,7 @@ class CDICOMPASS extends OSModule {
     }
 
     renderHdgBug() {
-        if(!this.initCompleted) return;
+        if (!this.initCompleted) return;
         let c = this.getLocalElementByID('hdg-text');
         c.innerHTML = this.getDegreeString(this.headingbug);
         c = this.getLocalElementByID('hdg-bug');
@@ -92,7 +138,7 @@ class CDICOMPASS extends OSModule {
     }
 
     renderUI() {
-        if(!this.initCompleted) return;
+        if (!this.initCompleted) return;
         let c = this.getLocalElementByID('compass');
         c.setAttribute("transform", "rotate(" + (-1) * this.heading + ",0,0)");
         c = this.getLocalElementByID('comp_N');

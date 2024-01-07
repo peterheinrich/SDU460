@@ -72,7 +72,13 @@ export class FlightGear {
             'consumables/fuel/tank[1]/indicated-level-gal_us',
             'instrumentation/comm/frequencies/selected-mhz-fmt',
             'instrumentation/comm/frequencies/standby-mhz-fmt',
-            'autopilot/settings/heading-bug-deg', 
+            'instrumentation/nav/frequencies/selected-mhz-fmt',
+            'instrumentation/nav/frequencies/standby-mhz-fmt',
+            'instrumentation/nav/from-flag',
+            'instrumentation/nav/to-flag',
+            'instrumentation/nav/filtered-cdiNAV0-deflection',
+            'instrumentation/nav/radials/selected-deg',
+            'autopilot/settings/heading-bug-deg',
         ];
         var high_speed_poll_properties = [
             'sim/time/gmt-string',
@@ -96,6 +102,18 @@ export class FlightGear {
                 }
                 else if (path === "/consumables/fuel/tank[1]/indicated-level-gal_us") {
                     new MessageBus().publish("indicated-level-gal_us_right", data.value);
+                }
+                else if (path === "/instrumentation/comm/frequencies/selected-mhz-fmt") {
+                    new MessageBus().publish("com1-selected-mhz-fmt", data.value);
+                }
+                else if (path === "/instrumentation/comm/frequencies/standby-mhz-fmt") {
+                    new MessageBus().publish("com1-standby-mhz-fmt", data.value);
+                }
+                else if (path === "/instrumentation/nav/frequencies/selected-mhz-fmt") {
+                    new MessageBus().publish("nav1-selected-mhz-fmt", data.value);
+                }
+                else if (path === "/instrumentation/nav/frequencies/standby-mhz-fmt") {
+                    new MessageBus().publish("nav1-standby-mhz-fmt", data.value);
                 }
                 else {
                     new MessageBus().publish(data.name, data.value);
@@ -151,7 +169,12 @@ export class FlightGear {
             return data.value;
         });
     }
-    
+    async readStbyNavFrequency() {
+        return this.readProperty("instrumentation/nav/frequencies/standby-mhz-fmt").then((data) => {
+            return data.value;
+        });
+    }
+
     setCOM1StbyFrequency(value) {
         value = value.replace(".", "");
         if (value.length == 3) value = value + "000";
@@ -161,6 +184,10 @@ export class FlightGear {
         this.writeProperty("instrumentation/comm/frequencies/standby-channel-width-khz", "8.33").then(() => {
             this.writeProperty("instrumentation/comm/frequencies/standby-channel", channel);
         })
+    }
+
+    setNAV1StbyFrequency(value) {
+        this.writeProperty("instrumentation/nav/frequencies/standby-mhz", value);
     }
 
     swapCOM1Frequencies() {
@@ -173,6 +200,15 @@ export class FlightGear {
                         this.writeProperty("instrumentation/comm/frequencies/standby-channel", selected.value);
                     });
                 });
+            });
+        });
+    }
+
+    swapNAV1Frequencies() {
+        this.readProperty("instrumentation/nav/frequencies/selected-mhz").then((selected) => {
+            this.readProperty("instrumentation/nav/frequencies/standby-mhz").then((standby) => {
+                this.writeProperty("instrumentation/nav/frequencies/selected-mhz", standby.value);
+                this.writeProperty("instrumentation/nav/frequencies/standby-mhz", selected.value);
             });
         });
     }

@@ -56,7 +56,7 @@ class SDU460 extends OSModule {
         else if (eventId === "btnCom1Stby") {
             this.frequencyDialog = !this.frequencyDialog;
             if (this.frequencyDialog) {
-                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "frequency");
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "frequencyCOM1");
             }
             else {
                 document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
@@ -65,6 +65,20 @@ class SDU460 extends OSModule {
         else if (eventId == "btnCom1") {
             FlightSimInterface.getInstance().swapCOM1Frequencies();
         }
+
+        else if (eventId === "btnNav1Stby") {
+            this.frequencyDialog = !this.frequencyDialog;
+            if (this.frequencyDialog) {
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "frequencyNAV1");
+            }
+            else {
+                document.getElementsByTagName("sdu460-mfd")[0].setAttribute("overlay", "");
+            }
+        } 
+        else if (eventId == "btnNav1") {
+            FlightSimInterface.getInstance().swapNAV1Frequencies();
+        }
+
         else if (eventId === "xpdr") {
             this.transponderDialog = !this.transponderDialog;
             if (this.transponderDialog) {
