@@ -112,8 +112,8 @@ class CDICOMPASS extends OSModule {
         if (!this.initCompleted) return;
         let c = this.getLocalElementByID('trk-text');
         c.innerHTML = this.getDegreeString(this.track);
-        c = this.getLocalElementByID('compass-trk-needle');
-        c.setAttribute("transform", "rotate(" + (this.track) + ",0,0)");
+      /*  c = this.getLocalElementByID('compass-trk-needle');
+        c.setAttribute("transform", "rotate(" + (this.track) + ",0,0)");*/
 
     }
 
